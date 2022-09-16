@@ -1,4 +1,4 @@
-package com.dscvit.devjams22.ui.theme
+package com.dscvit.devjams22.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

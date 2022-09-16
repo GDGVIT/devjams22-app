@@ -1,4 +1,4 @@
-package com.dscvit.devjams22
+package com.dscvit.devjams22.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.dscvit.devjams22.ui.theme.DevJams22Theme
+import com.dscvit.devjams22.presentation.ui.theme.DevJams22Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
