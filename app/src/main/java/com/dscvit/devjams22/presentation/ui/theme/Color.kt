@@ -11,3 +11,5 @@ val GoogleRed = Color(0xFFEA4335)
 val GoogleBlue = Color(0xFF4285F4)
 val GoogleYellow = Color(0xFFFBBC04)
 val GoogleGreen = Color(0xFF34A853)
+
+val GreyBackground = Color(0xFFF5F5F7)

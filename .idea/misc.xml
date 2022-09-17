@@ -3,14 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../layout/compose-model-1663317666873.xml" value="0.30869932432432434" />
-        <entry key="../../../../../../layout/compose-model-1663351448581.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable-v24/blue_splash.xml" value="0.1955" />
-        <entry key="app/src/main/res/drawable-v24/white_splash.xml" value="0.1955" />
-        <entry key="app/src/main/res/drawable/blue_splash.xml" value="0.1955" />
-        <entry key="app/src/main/res/drawable/dj_blimp.xml" value="0.1955" />
-        <entry key="app/src/main/res/drawable/rect.xml" value="0.1465" />
-        <entry key="app/src/main/res/drawable/white_splash.xml" value="0.1955" />
+        <entry key="../../../../../../layout/compose-model-1663390914587.xml" value="0.25" />
+        <entry key="../../../../../../layout/compose-model-1663392795274.xml" value="0.2" />
+        <entry key="../../../../../../layout/compose-model-1663415545000.xml" value="0.24814814814814815" />
+        <entry key="../../../../../../layout/compose-model-1663418148889.xml" value="0.22" />
+        <entry key="../../../../../../layout/compose-model-1663418169555.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/blue_splash.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/notification.xml" value="0.1" />
       </map>
     </option>
   </component>

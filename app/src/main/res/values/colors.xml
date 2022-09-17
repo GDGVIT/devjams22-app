@@ -7,4 +7,32 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="GoogleRed">#EA4335</color>
+    <color name="GoogleRed_Dark">#C72929</color>
+    <color name="GoogleRed_Light">#F85F53</color>
+    <color name="GoogleRed_Lighter">#F2B3B9</color>
+    <color name="GoogleRed_Lightest">#F7E3E1</color>
+
+    <color name="GoogleBlue">#4285F4</color>
+    <color name="GoogleBlue_Dark">#235BC6</color>
+    <color name="GoogleBlue_Light">#6A9DFF</color>
+    <color name="GoogleBlue_Lighter">#72A6EC</color>
+    <color name="GoogleBlue_Lightest">#E3EBF9</color>
+    <color name="blue_button">#0058FF</color>
+
+    <color name="GoogleYellow">#FBBC04</color>
+    <color name="GoogleYellow_Dark">#E59100</color>
+    <color name="GoogleYellow_Light">#FFBE00</color>
+    <color name="GoogleYellow_Lighter">#F0C14B</color>
+    <color name="GoogleYellow_Lightest">#F9F2DB</color>
+
+    <color name="GoogleGreen">#34A853</color>
+    <color name="GoogleGreen_Dark">#26824D</color>
+    <color name="GoogleGreen_Light">#45D26B</color>
+    <color name="GoogleGreen_Lighter">#73BC6B</color>
+    <color name="GoogleGreen_Lightest">#E1EFE5</color>
+
+    <color name="heyColor">#1E1E1E</color>
+    <color name="nameColor">#878788</color>
 </resources>
