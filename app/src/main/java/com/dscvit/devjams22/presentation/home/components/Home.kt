@@ -239,9 +239,8 @@ fun Home() {
 
         Card(
             backgroundColor = GreyBackground,
-            elevation = 0.dp,
-
-            ) {
+            elevation = 0.dp
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.timeline), contentDescription = null,
                 modifier = Modifier.padding(start = 12.dp)
@@ -290,7 +289,7 @@ fun Home() {
                                 modifier = Modifier
                                     .clip(shape = RoundedCornerShape(10.dp))
                                     .background(Color.White)
-                                    .width(250.dp)
+                                    .width(260.dp)
                                     .height(60.dp)
                                     .border(
                                         width = 3.dp,
@@ -311,7 +310,7 @@ fun Home() {
                             }
 
                         }
-                        
+
                         Text(
                             text = "2 pm",
                             color = Color.White,
@@ -320,12 +319,43 @@ fun Home() {
                             modifier = Modifier.padding(top = 12.dp)
                         )
 
+
                     }
 
 
                 }
 
 
+                Box(
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(20.dp))
+                        .width(150.dp)
+                        .height(30.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.White,
+                            shape = RoundedCornerShape(20.dp)
+                        )
+                        .align(Alignment.End)
+                ) {
+                    Row(modifier = Modifier.align(Alignment.Center)) {
+                        Text(
+                            text = "View Timeline",
+                            color = Color.White,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+
+                            )
+
+                        Image(
+                            painter = painterResource(id = R.drawable.view_arrow),
+                            contentDescription = null,
+                            modifier = Modifier.padding(top = 4.dp, start = 5.dp)
+                                .size(9.dp)
+                        )
+
+                    }
+                }
             }
 
         }
