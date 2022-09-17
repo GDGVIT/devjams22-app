@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.dscvit.devjams22.presentation.navigation.SetupNavGraph
 import com.dscvit.devjams22.presentation.ui.theme.DevJams22Theme
 
 class MainActivity : ComponentActivity() {
@@ -17,27 +19,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DevJams22Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("DevJams'22")
-                }
+                val navController = rememberNavController()
+                SetupNavGraph(navController = navController)
+
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+//@Composable
+//fun Greeting(name: String) {
+//    Text(text = "Hello $name!")
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    DevJams22Theme {
+//        Greeting("DevJams'22")
+//    }
+//}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DevJams22Theme {
-        Greeting("DevJams'22")
-    }
-}
+// A surface container using the 'background' color from the theme
+//Surface(
+//modifier = Modifier.fillMaxSize(),
+//color = MaterialTheme.colors.background
+//) {
+//    Greeting("DevJams'22")
+//}
