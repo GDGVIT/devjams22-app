@@ -2,10 +2,7 @@ package com.dscvit.devjams22.presentation.home.components
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,6 +40,7 @@ fun Home() {
         modifier = Modifier
             .fillMaxSize()
             .background(GreyBackground)
+            .verticalScroll(rememberScrollState())
     ) {
         Row(
             modifier = Modifier
@@ -224,6 +222,109 @@ fun Home() {
                     fontWeight = FontWeight.Normal,
                     fontSize = 10.sp
                 )
+
+            }
+
+        }
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = "Timeline",
+            color = Color.Black,
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp,
+            modifier = Modifier.padding(start = 20.dp)
+        )
+
+        Card(
+            backgroundColor = GreyBackground,
+            elevation = 0.dp,
+
+            ) {
+            Image(
+                painter = painterResource(id = R.drawable.timeline), contentDescription = null,
+                modifier = Modifier.padding(start = 12.dp)
+            )
+
+            Column(modifier = Modifier.padding(top = 20.dp, start = 45.dp)) {
+                Row() {
+                    Text(
+                        text = "Upcoming",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 25.sp
+                    )
+
+                    Image(
+                        painter = painterResource(id = R.drawable.upcoming),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(top = 5.dp, start = 8.dp)
+                            .size(25.dp)
+                    )
+
+                }
+
+                Row() {
+                    Column(modifier = Modifier.padding(top = 12.dp)) {
+                        Text(
+                            text = "12 pm",
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 12.sp
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        Row() {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.time),
+                                contentDescription = null,
+                                modifier = Modifier.padding(top = 1.dp)
+                            )
+
+                            Spacer(modifier = Modifier.width(20.dp))
+                            Box(
+                                modifier = Modifier
+                                    .clip(shape = RoundedCornerShape(10.dp))
+                                    .background(Color.White)
+                                    .width(250.dp)
+                                    .height(60.dp)
+                                    .border(
+                                        width = 3.dp,
+                                        color = colorResource(id = R.color.GoogleBlue_Dark),
+                                        shape = RoundedCornerShape(10.dp)
+                                    )
+                                    .padding(top = 12.dp)
+
+                            ) {
+                                Text(
+                                    text = "Hackathon is Live!",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp,
+                                    color = colorResource(id = R.color.GoogleBlue_Dark),
+                                    modifier = Modifier.padding(start = 12.dp)
+                                )
+
+                            }
+
+                        }
+                        
+                        Text(
+                            text = "2 pm",
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 12.sp,
+                            modifier = Modifier.padding(top = 12.dp)
+                        )
+
+                    }
+
+
+                }
+
 
             }
 
