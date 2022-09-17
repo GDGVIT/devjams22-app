@@ -35,4 +35,6 @@
 
     <color name="heyColor">#1E1E1E</color>
     <color name="nameColor">#878788</color>
+    <color name="discordColor">#E4E8FF</color>
+    <color name="JoinDiscordColor">#5865F2</color>
 </resources>
