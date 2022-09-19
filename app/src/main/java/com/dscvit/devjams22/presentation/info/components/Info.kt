@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dscvit.devjams22.R
+import com.dscvit.devjams22.presentation.home.components.OpenDiscord
 import com.dscvit.devjams22.presentation.ui.theme.*
 
 
@@ -45,78 +46,7 @@ fun Info() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.digitalocean),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(CenterVertically)
-
-            )
-
-            Image(
-                painter = painterResource(id = R.drawable.hashicorp),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(102.dp)
-                    .align(CenterVertically)
-                    .padding(top = 5.dp)
-
-            )
-            Image(
-                painter = painterResource(id = R.drawable.deepnote),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(90.dp)
-                    .align(CenterVertically)
-                    .padding(top = 0.dp)
-
-            )
-            Image(
-                painter = painterResource(id = R.drawable.echoar),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(90.dp)
-                    .align(CenterVertically)
-                    .padding(top = 0.dp)
-
-            )
-        }
-
-        Spacer(modifier = Modifier.height(5.dp))
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp)
-        ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.voiceflow),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(CenterVertically)
-                    .padding(top = 0.dp)
-
-            )
-
-            Image(
-                painter = painterResource(id = R.drawable.ren),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(CenterVertically)
-                    .padding(start = 10.dp)
-
-            )
-
-        }
+        Sponsor()
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -130,8 +60,107 @@ fun Info() {
 
         Spacer(modifier = Modifier.height(12.dp))
         Faq()
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = "Contact Us",
+            fontWeight = FontWeight.Bold,
+            fontSize = 25.sp,
+            modifier = Modifier
+                .padding(start = 20.dp, top = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        OpenDiscord()
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Box(modifier = Modifier) {
+
+            }
+
+        }
+
     }
 
+}
+
+
+@Composable
+fun Sponsor() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.digitalocean),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .align(CenterVertically)
+
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.hashicorp),
+            contentDescription = null,
+            modifier = Modifier
+                .size(102.dp)
+                .align(CenterVertically)
+                .padding(top = 5.dp)
+
+        )
+        Image(
+            painter = painterResource(id = R.drawable.deepnote),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp)
+
+        )
+        Image(
+            painter = painterResource(id = R.drawable.echoar),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp)
+
+        )
+    }
+
+    Spacer(modifier = Modifier.height(5.dp))
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp)
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.voiceflow),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp)
+
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.ren),
+            contentDescription = null,
+            modifier = Modifier
+                .size(80.dp)
+                .align(CenterVertically)
+                .padding(start = 10.dp)
+
+        )
+
+    }
 }
 
 @Composable

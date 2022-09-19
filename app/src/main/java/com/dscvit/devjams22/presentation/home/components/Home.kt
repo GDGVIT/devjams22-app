@@ -49,7 +49,7 @@ fun Home() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_person_24),
-                contentDescription = "blimp",
+                contentDescription = "person",
                 modifier = Modifier
                     .size(55.dp)
                     .clip(CircleShape)
@@ -114,90 +114,7 @@ fun Home() {
 
         }
 
-        val openDiscordUrl: Uri = Uri.parse(Constants.discordLink)
-        val intent = Intent(Intent.ACTION_VIEW, openDiscordUrl)
-        val context = LocalContext.current
-
-        Card(
-            backgroundColor = GreyBackground,
-            elevation = 0.dp,
-            modifier = Modifier.clickable {
-                startActivity(context, intent, null)
-            }
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.join_discord), contentDescription = null,
-                modifier = Modifier.padding(start = 16.dp)
-            )
-
-            Column(modifier = Modifier.padding(top = 50.dp, start = 45.dp)) {
-                Text(
-                    text = buildAnnotatedString {
-                        withStyle(
-                            style = SpanStyle(
-                                color = colorResource(id = R.color.JoinDiscordColor),
-                                fontSize = 20.sp
-                            )
-                        ) {
-                            append("Join the #")
-                        }
-                        withStyle(
-                            style = SpanStyle(
-                                color = GoogleRed,
-                                fontSize = 20.sp
-                            )
-                        ) {
-                            append("D")
-                        }
-
-                        withStyle(
-                            style = SpanStyle(
-                                color = GoogleGreen,
-                                fontSize = 20.sp
-                            )
-                        ) {
-                            append("J")
-                        }
-
-                        withStyle(
-                            style = SpanStyle(
-                                color = colorResource(id = R.color.JoinDiscordColor),
-                                fontSize = 20.sp
-                            )
-                        ) {
-                            append("'2")
-                        }
-                        withStyle(
-                            style = SpanStyle(
-                                color = GoogleYellow,
-                                fontSize = 20.sp
-                            )
-                        ) {
-                            append("2")
-                        }
-                    },
-                    fontWeight = FontWeight.Bold
-                )
-
-                Row {
-                    Text(
-                        text = "Discord",
-                        fontWeight = FontWeight.Bold,
-                        color = colorResource(id = R.color.JoinDiscordColor),
-                        fontSize = 20.sp
-                    )
-
-                    Image(
-                        painter = painterResource(id = R.drawable.arrow),
-                        contentDescription = null,
-                        modifier = Modifier.padding(top = 6.dp, start = 8.dp)
-                    )
-
-                }
-
-            }
-
-        }
+        OpenDiscord()
 
         Card(
             backgroundColor = GreyBackground,
@@ -362,6 +279,94 @@ fun Home() {
 
         }
 
+
+    }
+}
+
+@Composable
+fun OpenDiscord() {
+    val openDiscordUrl: Uri = Uri.parse(Constants.discordLink)
+    val intent = Intent(Intent.ACTION_VIEW, openDiscordUrl)
+    val context = LocalContext.current
+
+    Card(
+        backgroundColor = GreyBackground,
+        elevation = 0.dp,
+        modifier = Modifier.clickable {
+            startActivity(context, intent, null)
+        }
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.join_discord), contentDescription = null,
+            modifier = Modifier.padding(start = 16.dp)
+        )
+
+        Column(modifier = Modifier.padding(top = 50.dp, start = 45.dp)) {
+            Text(
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = colorResource(id = R.color.JoinDiscordColor),
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("Join the #")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleRed,
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("D")
+                    }
+
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleGreen,
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("J")
+                    }
+
+                    withStyle(
+                        style = SpanStyle(
+                            color = colorResource(id = R.color.JoinDiscordColor),
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("'2")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleYellow,
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("2")
+                    }
+                },
+                fontWeight = FontWeight.Bold
+            )
+
+            Row {
+                Text(
+                    text = "Discord",
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(id = R.color.JoinDiscordColor),
+                    fontSize = 20.sp
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.arrow),
+                    contentDescription = null,
+                    modifier = Modifier.padding(top = 6.dp, start = 8.dp)
+                )
+
+            }
+
+        }
 
     }
 }
