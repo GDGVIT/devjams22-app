@@ -41,6 +41,7 @@ fun Home() {
             .fillMaxSize()
             .background(GreyBackground)
             .verticalScroll(rememberScrollState())
+            .padding(bottom = 70.dp)
     ) {
         Row(
             modifier = Modifier
@@ -53,7 +54,7 @@ fun Home() {
                     .size(55.dp)
                     .clip(CircleShape)
                     .border(
-                        width = 10.dp,
+                        width = 8.dp,
                         color = colorResource(id = R.color.blue_button),
                         shape = CircleShape
                     )

@@ -13,3 +13,6 @@ val GoogleYellow = Color(0xFFFBBC04)
 val GoogleGreen = Color(0xFF34A853)
 
 val GreyBackground = Color(0xFFF5F5F7)
+
+val BottomNavSelected = Color(0xFF0151E9)
+val BottomNavUnselected = Color(0xFFC2C2C2)
