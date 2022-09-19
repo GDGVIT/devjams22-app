@@ -351,7 +351,8 @@ fun Home() {
                         Image(
                             painter = painterResource(id = R.drawable.view_arrow),
                             contentDescription = null,
-                            modifier = Modifier.padding(top = 4.dp, start = 5.dp)
+                            modifier = Modifier
+                                .padding(top = 4.dp, start = 5.dp)
                                 .size(9.dp)
                         )
 

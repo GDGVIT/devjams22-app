@@ -32,7 +32,6 @@ import com.dscvit.devjams22.presentation.ui.theme.GoogleBlue
 import com.dscvit.devjams22.presentation.ui.theme.GoogleGreen
 import com.dscvit.devjams22.presentation.ui.theme.GoogleRed
 import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 @Composable

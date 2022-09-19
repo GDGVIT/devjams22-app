@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import com.dscvit.devjams22.presentation.SplashScreen
 import com.dscvit.devjams22.presentation.home.components.Home
 import com.dscvit.devjams22.presentation.info.components.Info
-import com.dscvit.devjams22.presentation.navbar.MainScreen
 import com.dscvit.devjams22.presentation.profile.components.Profile
 
 

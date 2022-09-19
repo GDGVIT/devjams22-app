@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
-import com.dscvit.devjams22.presentation.navbar.BottomNavGraph
 import com.dscvit.devjams22.presentation.navbar.MainScreen
 import com.dscvit.devjams22.presentation.navigation.SetupNavGraph
 import com.dscvit.devjams22.presentation.ui.theme.DevJams22Theme
