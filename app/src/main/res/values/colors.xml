@@ -38,4 +38,8 @@
     <color name="discordColor">#E4E8FF</color>
     <color name="JoinDiscordColor">#5865F2</color>
 
+    <color name="timelineColor">#0153F0</color>
+    <color name="timelineDayColor">#6797F3</color>
+
+
 </resources>

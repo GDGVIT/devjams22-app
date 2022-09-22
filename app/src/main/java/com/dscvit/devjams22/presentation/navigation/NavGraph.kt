@@ -8,6 +8,7 @@ import com.dscvit.devjams22.presentation.SplashScreen
 import com.dscvit.devjams22.presentation.home.components.Home
 import com.dscvit.devjams22.presentation.info.components.Info
 import com.dscvit.devjams22.presentation.profile.components.Profile
+import com.dscvit.devjams22.presentation.timeline.Timeline
 
 
 @Composable
@@ -18,7 +19,7 @@ fun SetupNavGraph(navController: NavHostController) {
         }
 
         composable(route = Screen.Home.route) {
-            Home()
+            Home(navController = navController)
         }
 
         composable(route = Screen.Info.route) {
@@ -27,6 +28,10 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(route = Screen.Profile.route) {
             Profile()
+        }
+
+        composable(route = Screen.Timeline.route){
+            Timeline()
         }
 
     }

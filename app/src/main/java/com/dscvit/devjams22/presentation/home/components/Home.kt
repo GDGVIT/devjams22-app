@@ -25,17 +25,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.NavController
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.common.Constants
+import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.ui.theme.GoogleGreen
 import com.dscvit.devjams22.presentation.ui.theme.GoogleRed
 import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
 
 
-@Preview(showSystemUi = true)
+
 @Composable
-fun Home() {
+fun Home(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -256,7 +258,11 @@ fun Home() {
                         )
                         .align(Alignment.End)
                 ) {
-                    Row(modifier = Modifier.align(Alignment.Center)) {
+                    Row(modifier = Modifier
+                        .align(Alignment.Center)
+                        .clickable {
+                            navController.navigate(route = Screen.Timeline.route)
+                        }) {
                         Text(
                             text = "View Timeline",
                             color = Color.White,
