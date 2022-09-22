@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789515842715",
+    "project_id": "devjams-22",
+    "storage_bucket": "devjams-22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789515842715:android:68f8edbaeb36d7a590823e",
+        "android_client_info": {
+          "package_name": "com.dscvit.devjams22"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789515842715-b34rst6vbt82vv03ik5ucb7has2v13cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv4EU8VozJVA9ngq6HYAl8S9EPaSg4JK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789515842715-b34rst6vbt82vv03ik5ucb7has2v13cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

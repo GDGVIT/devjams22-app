@@ -1,19 +1,23 @@
 package com.dscvit.devjams22.presentation.info.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -21,7 +25,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.dscvit.devjams22.R
+import com.dscvit.devjams22.common.Constants
 import com.dscvit.devjams22.presentation.home.components.OpenDiscord
 import com.dscvit.devjams22.presentation.ui.theme.*
 
@@ -75,10 +81,14 @@ fun Info() {
 
         OpenDiscord()
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Box(modifier = Modifier) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
 
-            }
+        ) {
+            Socials()
 
         }
 
@@ -251,6 +261,122 @@ fun ExpandanbleFAQCard(title: String, description: String, color: Color) {
                     text = description, fontSize = 14.sp,
                     modifier = Modifier.padding(bottom = 40.dp),
                     lineHeight = 18.sp
+                )
+
+            }
+
+        }
+
+    }
+
+
+}
+
+@Composable
+fun Socials() {
+
+    val openInstagramUrl: Uri = Uri.parse(Constants.instagramLink)
+    val intent = Intent(Intent.ACTION_VIEW, openInstagramUrl)
+    val context = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .width(120.dp)
+            .height(88.dp)
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(color = colorResource(id = R.color.GoogleRed_Light))
+            .clickable {
+                ContextCompat.startActivity(context, intent, null)
+
+            }
+    ) {
+        Column(modifier = Modifier.align(Alignment.Center)) {
+            Column() {
+                Image(
+                    painter = painterResource(id = R.drawable.instagram), contentDescription = null,
+                    modifier = Modifier
+                        .size(35.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                Text(
+                    text = "@gdscvitvellore",
+                    color = Color.White,
+                    fontSize = 12.sp
+                )
+
+            }
+
+        }
+
+    }
+
+
+    val openTwitterUrl: Uri = Uri.parse(Constants.twitterLink)
+    val tIintent = Intent(Intent.ACTION_VIEW, openTwitterUrl)
+    val tContext = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .width(120.dp)
+            .height(88.dp)
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(color = colorResource(id = R.color.GoogleYellow_Lighter))
+            .clickable {
+                ContextCompat.startActivity(tContext, tIintent, null)
+
+            }
+    ) {
+        Column(modifier = Modifier.align(Alignment.Center)) {
+            Column() {
+                Image(
+                    painter = painterResource(id = R.drawable.twitter), contentDescription = null,
+                    modifier = Modifier
+                        .size(35.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                Text(
+                    text = "@gdscvit",
+                    color = Color.White,
+                    fontSize = 12.sp
+                )
+
+            }
+
+        }
+
+    }
+
+
+    val openMailUrl: Uri = Uri.parse(Constants.mailLink)
+    val mIntent = Intent(Intent.ACTION_VIEW, openMailUrl)
+    val mContext = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .width(120.dp)
+            .height(88.dp)
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(color = colorResource(id = R.color.GoogleGreen_Lighter))
+            .clickable {
+                ContextCompat.startActivity(mContext, mIntent, null)
+
+            }
+    ) {
+        Column(modifier = Modifier.align(Alignment.Center)) {
+            Column() {
+                Image(
+                    painter = painterResource(id = R.drawable.mail), contentDescription = null,
+                    modifier = Modifier
+                        .size(35.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                Text(
+                    text = "dscvit@gmail.com",
+                    color = Color.White,
+                    fontSize = 12.sp
                 )
 
             }
