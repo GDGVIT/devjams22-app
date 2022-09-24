@@ -24,6 +24,7 @@ import com.dscvit.devjams22.data.remote.dto.TimelineDC
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
 import com.yeocak.timelineview.TimelineView
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -76,8 +77,6 @@ fun Timeline(
         }
 
 
-
-
     }
 
 
@@ -87,13 +86,22 @@ fun Timeline(
 @SuppressLint("SimpleDateFormat")
 @Composable
 fun EachEvent(timelineDC: TimelineDC) {
+
     val daySDF = SimpleDateFormat("d MMM")
     val currentDate = timelineDC.startTime?.toDate()?.let { daySDF.format(it) }
     Log.d("date: ", currentDate.toString())
 
     val timeSDF = SimpleDateFormat("ha")
     val time = timelineDC.startTime?.toDate()?.let { timeSDF.format(it) }
-    Log.d("date: ", time.toString())
+
+
+    val timeNow = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+    val getCurrentTimeAndDate = timeNow.format(Date())
+
+    val eventSDF = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+    val eventTimeAndDate = timelineDC.startTime?.toDate()?.let { eventSDF.format(it) }
+
+
 
     Row(
         modifier = Modifier
@@ -101,7 +109,9 @@ fun EachEvent(timelineDC: TimelineDC) {
             .height(IntrinsicSize.Min)
     ) {
         TimelineView.SingleNode(
-            color = colorResource(id = R.color.timelineColor),
+            color = if (getCurrentTimeAndDate < eventTimeAndDate!!) colorResource(id = R.color.timeLineInactive) else colorResource(
+                id = R.color.timelineColor
+            ),
             nodeType = TimelineView.NodeType.MIDDLE,
             nodeSize = 40f,
             isChecked = false,
@@ -118,7 +128,9 @@ fun EachEvent(timelineDC: TimelineDC) {
                 Text(
                     text = "$time - ${timelineDC.eventName}",
                     fontWeight = FontWeight.SemiBold,
-                    color = colorResource(id = R.color.timelineColor),
+                    color = if (getCurrentTimeAndDate < eventTimeAndDate) colorResource(id = R.color.timeLineInactive) else colorResource(
+                        id = R.color.timelineColor
+                    ),
                     fontSize = 18.sp,
                     modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 47.dp)
                 )
@@ -137,13 +149,29 @@ fun EachEvent(timelineDC: TimelineDC) {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun EachEventWithHead(timelineDC: TimelineDC) {
+    val daySDF = SimpleDateFormat("d MMM")
+    val currentDate = timelineDC.startTime?.toDate()?.let { daySDF.format(it) }
+    Log.d("date: ", currentDate.toString())
+
+    val timeSDF = SimpleDateFormat("ha")
+    val time = timelineDC.startTime?.toDate()?.let { timeSDF.format(it) }
+
+
+    val timeNow = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+    val getCurrentTimeAndDate = timeNow.format(Date())
+
+    val eventSDF = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+    val eventTimeAndDate = timelineDC.startTime?.toDate()?.let { eventSDF.format(it) }
+
     Row(
         modifier = Modifier
             .padding(start = 32.dp)
             .height(IntrinsicSize.Min)
     ) {
         TimelineView.SingleNode(
-            color = colorResource(id = R.color.timelineColor),
+            color = if (getCurrentTimeAndDate < eventTimeAndDate!!) colorResource(id = R.color.timeLineInactive) else colorResource(
+                id = R.color.timelineColor
+            ),
             nodeType = TimelineView.NodeType.MIDDLE,
             nodeSize = 40f,
             isChecked = false,
@@ -156,19 +184,14 @@ fun EachEventWithHead(timelineDC: TimelineDC) {
                 .fillMaxWidth()
         ) {
             Column() {
-                val daySDF = SimpleDateFormat("d MMM")
-                val currentDate = timelineDC.startTime?.toDate()?.let { daySDF.format(it) }
-                Log.d("date: ", currentDate.toString())
-
-                val timeSDF = SimpleDateFormat("ha")
-                val time = timelineDC.startTime?.toDate()?.let { timeSDF.format(it) }
-                Log.d("date: ", time.toString())
 
 
                 Text(
                     text = "Day ${timelineDC.day} - $currentDate",
                     fontWeight = FontWeight.SemiBold,
-                    color = colorResource(id = R.color.timelineDayColor),
+                    color = if (getCurrentTimeAndDate < eventTimeAndDate) colorResource(id = R.color.timeLineInactive) else colorResource(
+                        id = R.color.timelineDayColor
+                    ),
                     fontSize = 18.sp,
                     modifier = Modifier.padding(start = 16.dp, bottom = 10.dp, top = 12.dp)
                 )
@@ -176,7 +199,9 @@ fun EachEventWithHead(timelineDC: TimelineDC) {
                 Text(
                     text = "$time - ${timelineDC.eventName}",
                     fontWeight = FontWeight.SemiBold,
-                    color = colorResource(id = R.color.timelineColor),
+                    color = if (getCurrentTimeAndDate < eventTimeAndDate) colorResource(id = R.color.timeLineInactive) else colorResource(
+                        id = R.color.timelineColor
+                    ),
                     fontSize = 18.sp,
                     modifier = Modifier.padding(start = 16.dp, end = 8.dp)
                 )
