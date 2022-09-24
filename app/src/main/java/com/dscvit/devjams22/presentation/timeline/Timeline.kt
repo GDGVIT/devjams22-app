@@ -1,6 +1,9 @@
 package com.dscvit.devjams22.presentation.timeline
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,8 +23,10 @@ import com.dscvit.devjams22.common.State
 import com.dscvit.devjams22.data.remote.dto.TimelineDC
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
 import com.yeocak.timelineview.TimelineView
+import java.text.SimpleDateFormat
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Timeline(
 
@@ -33,6 +38,7 @@ fun Timeline(
         modifier = Modifier
             .fillMaxSize()
             .background(GreyBackground)
+            .padding(bottom = 10.dp)
 
     ) {
         Text(
@@ -40,7 +46,7 @@ fun Timeline(
             fontWeight = FontWeight.Bold,
             fontSize = 25.sp,
             modifier = Modifier
-                .padding(start = 20.dp, top = 16.dp)
+                .padding(start = 20.dp, top = 16.dp, bottom = 20.dp)
         )
 
         when (postsState) {
@@ -52,7 +58,12 @@ fun Timeline(
 
                 LazyColumn {
                     items((postsState as State.Success<List<TimelineDC>>).data) {
-                        EachEvent(timelineDC = it)
+                        if (it.newDay == true) {
+                            EachEventWithHead(timelineDC = it)
+                        } else {
+                            EachEvent(timelineDC = it)
+                        }
+
                     }
                 }
 
@@ -65,17 +76,70 @@ fun Timeline(
         }
 
 
+
+
     }
 
 
 }
 
 
+@SuppressLint("SimpleDateFormat")
 @Composable
 fun EachEvent(timelineDC: TimelineDC) {
+    val daySDF = SimpleDateFormat("d MMM")
+    val currentDate = timelineDC.startTime?.toDate()?.let { daySDF.format(it) }
+    Log.d("date: ", currentDate.toString())
+
+    val timeSDF = SimpleDateFormat("ha")
+    val time = timelineDC.startTime?.toDate()?.let { timeSDF.format(it) }
+    Log.d("date: ", time.toString())
+
     Row(
         modifier = Modifier
-            .padding(start = 32.dp, top = 20.dp)
+            .padding(start = 32.dp)
+            .height(IntrinsicSize.Min)
+    ) {
+        TimelineView.SingleNode(
+            color = colorResource(id = R.color.timelineColor),
+            nodeType = TimelineView.NodeType.MIDDLE,
+            nodeSize = 40f,
+            isChecked = false,
+            isDashed = false,
+
+            )
+
+        Box(
+            modifier = Modifier
+                .height(120.dp)
+                .fillMaxWidth()
+        ) {
+            Column() {
+                Text(
+                    text = "$time - ${timelineDC.eventName}",
+                    fontWeight = FontWeight.SemiBold,
+                    color = colorResource(id = R.color.timelineColor),
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 47.dp)
+                )
+
+            }
+        }
+
+
+    }
+
+
+}
+
+
+@SuppressLint("SimpleDateFormat")
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun EachEventWithHead(timelineDC: TimelineDC) {
+    Row(
+        modifier = Modifier
+            .padding(start = 32.dp)
             .height(IntrinsicSize.Min)
     ) {
         TimelineView.SingleNode(
@@ -92,19 +156,29 @@ fun EachEvent(timelineDC: TimelineDC) {
                 .fillMaxWidth()
         ) {
             Column() {
-//                Text(
-//                    text = "Day 1 - 30th Oct",
-//                    fontWeight = FontWeight.SemiBold,
-//                    color = colorResource(id = R.color.timelineDayColor),
-//                    fontSize = 18.sp,
-//                    modifier = Modifier.padding(start = 16.dp, bottom = 10.dp)
-//                )
+                val daySDF = SimpleDateFormat("d MMM")
+                val currentDate = timelineDC.startTime?.toDate()?.let { daySDF.format(it) }
+                Log.d("date: ", currentDate.toString())
+
+                val timeSDF = SimpleDateFormat("ha")
+                val time = timelineDC.startTime?.toDate()?.let { timeSDF.format(it) }
+                Log.d("date: ", time.toString())
+
+
                 Text(
-                    text = "${timelineDC.startTime?.toDate()} - ${timelineDC.eventName}",
+                    text = "Day ${timelineDC.day} - $currentDate",
+                    fontWeight = FontWeight.SemiBold,
+                    color = colorResource(id = R.color.timelineDayColor),
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(start = 16.dp, bottom = 10.dp, top = 12.dp)
+                )
+
+                Text(
+                    text = "$time - ${timelineDC.eventName}",
                     fontWeight = FontWeight.SemiBold,
                     color = colorResource(id = R.color.timelineColor),
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(start = 16.dp)
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(start = 16.dp, end = 8.dp)
                 )
 
             }
