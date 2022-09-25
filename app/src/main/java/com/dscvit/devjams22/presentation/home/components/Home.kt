@@ -1,15 +1,17 @@
 package com.dscvit.devjams22.presentation.home.components
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,18 +26,23 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.common.Constants
+import com.dscvit.devjams22.common.State
+import com.dscvit.devjams22.data.remote.dto.TimelineDC
 import com.dscvit.devjams22.presentation.navigation.Screen
-import com.dscvit.devjams22.presentation.ui.theme.GoogleGreen
-import com.dscvit.devjams22.presentation.ui.theme.GoogleRed
-import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
-import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
+import com.dscvit.devjams22.presentation.timeline.EventsViewModel
+import com.dscvit.devjams22.presentation.ui.theme.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
+@SuppressLint("SimpleDateFormat")
 @Composable
-fun Home(navController: NavController) {
+fun Home(navController: NavController, viewModel: EventsViewModel = viewModel()) {
+    val postsState: State<List<TimelineDC>> by viewModel.postState.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,43 +54,105 @@ fun Home(navController: NavController) {
             modifier = Modifier
                 .padding(top = 32.dp, start = 32.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_baseline_person_24),
-                contentDescription = "person",
-                modifier = Modifier
-                    .size(55.dp)
-                    .clip(CircleShape)
-                    .border(
-                        width = 8.dp,
-                        color = colorResource(id = R.color.blue_button),
-                        shape = CircleShape
-                    )
-            )
-
-            Spacer(modifier = Modifier.width(12.dp))
 
             Text(
-                text = "Hey",
-                modifier = Modifier.padding(top = 10.dp),
-                style = MaterialTheme.typography.h3,
-                fontSize = 25.sp,
-                color = colorResource(id = R.color.heyColor)
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleRed,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("D")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleBlue,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("e")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleYellow,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("v")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleGreen,
+                            fontSize = 45.sp,
+                            letterSpacing = (-15).sp
+                        )
+                    ) {
+                        append("J")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleBlue,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("a")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleRed,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("m")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleYellow,
+                            fontSize = 45.sp
+                        )
+                    ) {
+                        append("s")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleGreen,
+                            fontSize = 45.sp,
+                            letterSpacing = 3.sp
 
-            )
+                        )
+                    ) {
+                        append("'")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleBlue,
+                            fontSize = 45.sp
 
-            Spacer(modifier = Modifier.width(8.dp))
+                        )
+                    ) {
+                        append("2")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = GoogleBlue,
+                            fontSize = 45.sp,
+                            letterSpacing = (0).sp
 
+                        )
+                    ) {
+                        append("2")
+                    }
+                },
+                modifier = Modifier,
 
-            Text(
-                text = "User!",
-                modifier = Modifier.padding(top = 10.dp),
-                style = MaterialTheme.typography.body1,
-                fontSize = 25.sp,
-                color = colorResource(id = R.color.nameColor)
+                fontSize = 45.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = (-6).sp,
 
-            )
+                )
 
-            Spacer(modifier = Modifier.width(120.dp))
+            Spacer(modifier = Modifier.width(85.dp))
 
             Row(
                 modifier = Modifier
@@ -154,137 +223,182 @@ fun Home(navController: NavController) {
             fontSize = 30.sp,
             modifier = Modifier.padding(start = 20.dp)
         )
-
-        Card(
-            backgroundColor = GreyBackground,
-            elevation = 0.dp
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.timeline), contentDescription = null,
-                modifier = Modifier.padding(start = 12.dp)
-            )
-
-            Column(modifier = Modifier.padding(top = 20.dp, start = 45.dp)) {
-                Row() {
-                    Text(
-                        text = "Upcoming",
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp
-                    )
-
-                    Image(
-                        painter = painterResource(id = R.drawable.upcoming),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(top = 5.dp, start = 8.dp)
-                            .size(25.dp)
-                    )
-
-                }
-
-                Row() {
-                    Column(modifier = Modifier.padding(top = 12.dp)) {
-                        Text(
-                            text = "12 pm",
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 12.sp
-                        )
-
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        Row() {
-
-                            Image(
-                                painter = painterResource(id = R.drawable.time),
-                                contentDescription = null,
-                                modifier = Modifier.padding(top = 1.dp)
-                            )
-
-                            Spacer(modifier = Modifier.width(20.dp))
-                            Box(
-                                modifier = Modifier
-                                    .clip(shape = RoundedCornerShape(10.dp))
-                                    .background(Color.White)
-                                    .width(260.dp)
-                                    .height(60.dp)
-                                    .border(
-                                        width = 3.dp,
-                                        color = colorResource(id = R.color.GoogleBlue_Dark),
-                                        shape = RoundedCornerShape(10.dp)
-                                    )
-                                    .padding(top = 12.dp)
-
-                            ) {
-                                Text(
-                                    text = "Hackathon is Live!",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp,
-                                    color = colorResource(id = R.color.GoogleBlue_Dark),
-                                    modifier = Modifier.padding(start = 12.dp)
-                                )
-
-                            }
-
-                        }
-
-                        Text(
-                            text = "2 pm",
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 12.sp,
-                            modifier = Modifier.padding(top = 12.dp)
-                        )
+        val timeNow = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+        val getCurrentTimeAndDate = timeNow.format(Date())
 
 
-                    }
-
-
-                }
-
-
-                Box(
-                    modifier = Modifier
-                        .clip(shape = RoundedCornerShape(20.dp))
-                        .width(150.dp)
-                        .height(30.dp)
-                        .border(
-                            width = 3.dp,
-                            color = Color.White,
-                            shape = RoundedCornerShape(20.dp)
-                        )
-                        .align(Alignment.End)
-                ) {
-                    Row(modifier = Modifier
-                        .align(Alignment.Center)
-                        .clickable {
-                            navController.navigate(route = Screen.Timeline.route)
-                        }) {
-                        Text(
-                            text = "View Timeline",
-                            color = Color.White,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.SemiBold,
-
-                            )
-
-                        Image(
-                            painter = painterResource(id = R.drawable.view_arrow),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .padding(top = 4.dp, start = 5.dp)
-                                .size(9.dp)
-                        )
-
-                    }
-                }
+        when (postsState) {
+            is State.Loading -> {
+                Log.d("load", "loading")
             }
 
+            is State.Success -> {
+
+                for (event in (postsState as State.Success<List<TimelineDC>>).data) {
+                    val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+                    val eventTimeAndDateStart =
+                        event.startTime?.toDate()?.let { eventSDF.format(it) }
+
+                    val startTimeSDF = SimpleDateFormat("ha")
+                    val startTime = event.startTime?.toDate()?.let { startTimeSDF.format(it) }
+
+                    val endTimeSDF = SimpleDateFormat("ha")
+                    val endTime = event.endTime?.toDate()?.let { endTimeSDF.format(it) }
+
+                    if (getCurrentTimeAndDate < eventTimeAndDateStart!!) {
+                        TimelineCard(
+                            navController,
+                            event.eventName.toString(),
+                            startTime.toString(),
+                            endTime.toString()
+                        )
+                        break
+                    }
+
+                }
+
+            }
+
+            is State.Failed -> {
+                Text(text = (postsState as State.Failed<List<TimelineDC>>).message)
+                Log.d("Failed", (postsState as State.Failed<List<TimelineDC>>).message)
+            }
         }
 
 
     }
+}
+
+@Composable
+fun TimelineCard(navController: NavController, event: String, start: String, end: String) {
+    Card(
+        backgroundColor = GreyBackground,
+        elevation = 0.dp
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.timeline), contentDescription = null,
+            modifier = Modifier.padding(start = 12.dp)
+        )
+
+        Column(modifier = Modifier.padding(top = 20.dp, start = 45.dp)) {
+            Row() {
+                Text(
+                    text = "Upcoming",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 25.sp
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.upcoming),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(top = 5.dp, start = 8.dp)
+                        .size(25.dp)
+                )
+
+            }
+
+            Row() {
+                Column(modifier = Modifier.padding(top = 12.dp)) {
+                    Text(
+                        text = start,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Row() {
+
+                        Image(
+                            painter = painterResource(id = R.drawable.time),
+                            contentDescription = null,
+                            modifier = Modifier.padding(top = 1.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Box(
+                            modifier = Modifier
+                                .clip(shape = RoundedCornerShape(10.dp))
+                                .background(Color.White)
+                                .width(260.dp)
+                                .height(60.dp)
+                                .border(
+                                    width = 3.dp,
+                                    color = colorResource(id = R.color.GoogleBlue_Dark),
+                                    shape = RoundedCornerShape(10.dp)
+                                )
+                                .padding(top = 12.dp)
+
+                        ) {
+                            Text(
+                                text = event,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = colorResource(id = R.color.GoogleBlue_Dark),
+                                modifier = Modifier.padding(start = 12.dp)
+                            )
+
+                        }
+
+                    }
+
+                    Text(
+                        text = end,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(top = 12.dp)
+                    )
+
+
+                }
+
+
+            }
+
+
+            Box(
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(20.dp))
+                    .width(150.dp)
+                    .height(30.dp)
+                    .border(
+                        width = 3.dp,
+                        color = Color.White,
+                        shape = RoundedCornerShape(20.dp)
+                    )
+                    .align(Alignment.End)
+            ) {
+                Row(modifier = Modifier
+                    .align(Alignment.Center)
+                    .clickable {
+                        navController.navigate(route = Screen.Timeline.route)
+                    }) {
+                    Text(
+                        text = "View Timeline",
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+
+                        )
+
+                    Image(
+                        painter = painterResource(id = R.drawable.view_arrow),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(top = 4.dp, start = 5.dp)
+                            .size(9.dp)
+                    )
+
+                }
+            }
+        }
+
+    }
+
 }
 
 @Composable
