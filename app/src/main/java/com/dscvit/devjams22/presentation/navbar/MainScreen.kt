@@ -1,5 +1,7 @@
 package com.dscvit.devjams22.presentation.navbar
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -16,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.navigation.SetupNavGraph
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen() {
 
@@ -44,11 +47,6 @@ fun MainScreen() {
                             route = Screen.Home.route,
                             icon = Icons.Default.Home
                         ),
-                        BottomNavItem(
-                            name = "Profile",
-                            route = Screen.Profile.route,
-                            icon = Icons.Default.Person
-                        )
                     ),
                     navController = navController,
                     onItemClick = {

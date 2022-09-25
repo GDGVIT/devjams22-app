@@ -1,5 +1,7 @@
 package com.dscvit.devjams22.presentation.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,6 +13,7 @@ import com.dscvit.devjams22.presentation.profile.components.Profile
 import com.dscvit.devjams22.presentation.timeline.Timeline
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
@@ -24,10 +27,6 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(route = Screen.Info.route) {
             Info()
-        }
-
-        composable(route = Screen.Profile.route) {
-            Profile()
         }
 
         composable(route = Screen.Timeline.route){
