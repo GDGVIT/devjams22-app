@@ -230,7 +230,7 @@ fun ExpandanbleFAQCard(title: String, description: String, color: Color) {
                     fontWeight = FontWeight.SemiBold,
                     color = color,
                     overflow = TextOverflow.Ellipsis,
-                    maxLines = 1
+                    
                 )
                 IconButton(
                     onClick = { expandedState != expandedState },

@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">DevJams\'22</string>
 
-    <string name="q_1">Q.Question One?</string>
-    <string name="a_1">It\'s not only writers who can benefit from this free online tool. If you\'re a programmer who\'s working on a project where blocks of text are needed, this tool can be a great way to get that. It\'s a good way to test your programming and that the tool being created is working well.</string>
+    <string name="q_1">Q.What is DevJams?</string>
+    <string name="a_1">DevJams is an annual 36-hour long hackathon, that aims to bring together great developers and designers under one roof and pitting them against each other in a healthy competition. Under focused mentorship from a dedicated and experienced technical team, and an equally challenging and innovative panel of themes, participants can test their skills and use them to build projects to solve real-world problems.</string>
 
-    <string name="q_2">Q.Question Two?</string>
-    <string name="a_2">Above are a few examples of how the random paragraph generator can be beneficial. The best way to see if this random paragraph picker will be useful for your intended purposes is to give it a try. Generate a number of paragraphs to see if they are beneficial to your current project.</string>
+    <string name="q_2">Q.How do I submit what I have made for the hackathon?</string>
+    <string name="a_2">You have to develop the application on your local system, add your code to a GitHub repository and submit its link. Also, you have to update the README of your repository with all the details about your application along with the instructions to run.</string>
 
-    <string name="q_3">Q.Question Three?</string>
-    <string name="a_3">If you do find this paragraph tool useful, please do us a favor and let us know how you\'re using it. It\'s greatly beneficial for us to know the different ways this tool is being used so we can improve it with updates. </string>
+    <string name="q_3">Q.Do we need to have the entire idea fully working?</string>
+    <string name="a_3">The entire idea need not be fully implemented. However, the submission should be functional so that it can be reviewed by the judges.</string>
 
-    <string name="q_4">Q.Question Four?</string>
-    <string name="a_4">Yes. We\'re always interested in improving this generator and one of the best ways to do that is to add new and interesting paragraphs to the generator. If you\'d like to contribute some random paragraphs, please contact us.</string>
+    <string name="q_4">Q.Do I need to give a demo of the product that I have built?</string>
+    <string name="a_4">If you want, you can submit a small presentation or a video that demonstrates your submission. However, it\'s not mandatory, and only good to have. In case you are one of the winners, you might be invited to demonstrate your application, details of which will be shared with sufficient advance notice.</string>
 
 </resources>
