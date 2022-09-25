@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import com.dscvit.devjams22.presentation.SplashScreen
 import com.dscvit.devjams22.presentation.home.components.Home
 import com.dscvit.devjams22.presentation.info.components.Info
-import com.dscvit.devjams22.presentation.profile.components.Profile
 import com.dscvit.devjams22.presentation.timeline.Timeline
 
 
@@ -29,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController) {
             Info()
         }
 
-        composable(route = Screen.Timeline.route){
+        composable(route = Screen.Timeline.route) {
             Timeline()
         }
 
