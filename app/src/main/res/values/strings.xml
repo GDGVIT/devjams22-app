@@ -13,4 +13,5 @@
     <string name="q_4">Q.Do I need to give a demo of the product that I have built?</string>
     <string name="a_4">If you want, you can submit a small presentation or a video that demonstrates your submission. However, it\'s not mandatory, and only good to have. In case you are one of the winners, you might be invited to demonstrate your application, details of which will be shared with sufficient advance notice.</string>
 
+    <string name="default_notification_channel_id">Global</string>
 </resources>

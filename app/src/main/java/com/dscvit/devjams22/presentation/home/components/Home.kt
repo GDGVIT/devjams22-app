@@ -229,7 +229,12 @@ fun Home(navController: NavController, viewModel: EventsViewModel = viewModel())
 
         when (postsState) {
             is State.Loading -> {
-                Log.d("load", "loading")
+                TimelineCard(
+                    navController,
+                    "Loading",
+                    "",
+                    ""
+                )
             }
 
             is State.Success -> {
@@ -395,6 +400,8 @@ fun TimelineCard(navController: NavController, event: String, start: String, end
 
                 }
             }
+
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
     }

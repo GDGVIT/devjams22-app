@@ -38,8 +38,12 @@ import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
 fun SplashScreen(navController: NavController) {
 
     Column(
-        modifier = Modifier.background(color = Color.White)
-    ) {
+        modifier = Modifier
+            .background(color = Color.White)
+            .fillMaxSize(),
+
+
+        ) {
         Text(
             text = buildAnnotatedString {
                 withStyle(
@@ -140,65 +144,66 @@ fun SplashScreen(navController: NavController) {
 
         Box(
             modifier = Modifier
-                .background(color = Color.White)
-                .fillMaxSize(),
+                .background(color = Color.White),
+
             contentAlignment = Alignment.Center
 
         ) {
             Image(
                 painter = painterResource(id = R.drawable.blue_splash), contentDescription = null,
                 modifier = Modifier
-
-                    .width(800.dp)
-
             )
-            Column() {
-                Image(
-                    painter = painterResource(id = R.drawable.dj_blimp),
-                    contentDescription = "blimp",
-                    modifier = Modifier.width(350.dp)
-                )
 
-                Spacer(modifier = Modifier.height(16.dp))
 
-                Row(
-                    modifier = Modifier
-                        .clip(shape = RoundedCornerShape(10.dp))
-                        .background(color = colorResource(id = R.color.blue_button))
-                        .fillMaxWidth(.80f)
-                        .height(60.dp)
-                        .align(CenterHorizontally)
-                        .clickable {
-                            navController.navigate(route = Screen.Home.route)
-                        }
-
-                ) {
-                    Spacer(modifier = Modifier.width(60.dp))
-                    Text(
-                        text = "G",
-                        color = Color.White,
-                        modifier = Modifier.align(CenterVertically),
-                        style = MaterialTheme.typography.body1
-
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = "Continue with Google",
-                        color = Color.White,
-                        modifier = Modifier.align(CenterVertically),
-                        style = MaterialTheme.typography.h1
-
-                    )
-                }
-
-            }
+            Image(
+                painter = painterResource(id = R.drawable.dj_blimp),
+                contentDescription = "blimp",
+                modifier = Modifier.width(350.dp)
+            )
 
         }
+
+        Row(
+
+            modifier = Modifier
+                .clip(shape = RoundedCornerShape(10.dp))
+                .background(color = colorResource(id = R.color.blue_button))
+                .fillMaxWidth(.80f)
+                .height(60.dp)
+                .align(CenterHorizontally)
+                .weight(1f, false)
+                .clickable {
+                    navController.navigate(route = Screen.Home.route)
+                },
+
+
+        ) {
+            Spacer(modifier = Modifier.width(60.dp))
+            Text(
+                text = "G",
+                color = Color.White,
+                modifier = Modifier.align(CenterVertically),
+                style = MaterialTheme.typography.body1
+
+            )
+            Spacer(modifier = Modifier.width(20.dp))
+            Text(
+                text = "Continue with Google",
+                color = Color.White,
+                modifier = Modifier.align(CenterVertically),
+                style = MaterialTheme.typography.h1
+
+            )
+        }
+
+
 
 
     }
 
+
 }
+
 
 @Preview(showSystemUi = true)
 @Composable
