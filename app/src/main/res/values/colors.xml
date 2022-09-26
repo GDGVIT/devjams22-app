@@ -41,5 +41,6 @@
     <color name="timelineColor">#0153F0</color>
     <color name="timelineDayColor">#6797F3</color>
     <color name="timeLineInactive">#B9B9BA</color>
+    <color name="announcementColor">#F5F5F7</color>
 
 </resources>

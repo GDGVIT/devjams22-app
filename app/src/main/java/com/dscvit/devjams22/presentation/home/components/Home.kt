@@ -23,6 +23,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
@@ -31,7 +32,9 @@ import androidx.navigation.NavController
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.common.Constants
 import com.dscvit.devjams22.common.State
+import com.dscvit.devjams22.data.remote.dto.AnnouncementDC
 import com.dscvit.devjams22.data.remote.dto.TimelineDC
+import com.dscvit.devjams22.presentation.announcements.AnnouncementViewModel
 import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.timeline.EventsViewModel
 import com.dscvit.devjams22.presentation.ui.theme.*
@@ -41,8 +44,9 @@ import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 @Composable
-fun Home(navController: NavController, viewModel: EventsViewModel = viewModel()) {
+fun Home(navController: NavController, viewModel: EventsViewModel = viewModel(), viewModelAnnounce: AnnouncementViewModel = viewModel()) {
     val postsState: State<List<TimelineDC>> by viewModel.postState.collectAsState()
+    val announcePostsState: State<List<AnnouncementDC>> by viewModelAnnounce.postState.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -270,9 +274,176 @@ fun Home(navController: NavController, viewModel: EventsViewModel = viewModel())
             }
         }
 
+        Spacer(modifier = Modifier.height(30.dp))
+
+        when (announcePostsState) {
+            is State.Loading -> {
+                Announcements(navController, "Loading", "")
+            }
+
+            is State.Success -> {
+
+
+                for (event in (announcePostsState as State.Success<List<AnnouncementDC>>).data) {
+                    val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+                    val eventTimeAndDateStart =
+                        event.time?.toDate()?.let { eventSDF.format(it) }
+
+                    if(getCurrentTimeAndDate <= eventTimeAndDateStart!!){
+                        Announcements(navController, event.title.toString(), event.desc.toString())
+                    }
+
+                }
+
+            }
+
+            is State.Failed -> {
+                Text(text = (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
+                Log.d("Failed", (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
+            }
+        }
+
+
+
+
 
     }
 }
+
+
+
+@Composable
+fun Announcements(navController: NavController, title: String, desc: String) {
+
+
+    Card(
+        backgroundColor = GreyBackground, elevation = 0.dp
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.announcement), contentDescription = null,
+            modifier = Modifier.padding(start = 12.dp)
+        )
+
+        Column(modifier = Modifier.padding(top = 20.dp, start = 45.dp)) {
+            Row() {
+                Text(
+                    text = "Announcements",
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 25.sp
+                )
+
+
+            }
+
+            Row() {
+                Column(modifier = Modifier.padding(top = 12.dp)) {
+
+
+                    Row() {
+
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Box(
+                            modifier = Modifier
+                                .clip(shape = RoundedCornerShape(10.dp))
+                                .background(Color.White)
+                                .width(300.dp)
+                                .height(60.dp)
+                                .padding(top = 12.dp)
+
+                        ) {
+
+                            Row() {
+
+                                Image(
+                                    painter = painterResource(id = R.drawable.circle),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .padding(top = 1.dp, start = 12.dp)
+                                        .size(35.dp)
+                                )
+
+                                Column() {
+                                    Text(
+                                        text = title,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 16.sp,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(start = 12.dp)
+                                    )
+                                    Text(
+                                        text = desc,
+                                        fontWeight = FontWeight.Normal,
+                                        fontSize = 13.sp,
+                                        color = Color.Black,
+                                        modifier = Modifier.padding(start = 12.dp)
+                                    )
+
+                                }
+
+
+                            }
+
+
+                        }
+
+                    }
+
+
+                }
+
+
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+
+            Box(
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(20.dp))
+                    .width(150.dp)
+                    .height(30.dp)
+                    .border(
+                        width = 3.dp,
+                        color = Color.Black,
+                        shape = RoundedCornerShape(20.dp)
+                    )
+                    .align(Alignment.End)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .clickable {
+                            navController.navigate(route = Screen.Announcement.route)
+                        }
+                ) {
+                    Text(
+                        text = "View Announcements",
+                        color = Color.Black,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+
+                        )
+
+
+
+                    Image(
+                        painter = painterResource(id = R.drawable.arrow_black),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(top = 4.dp, start = 5.dp)
+                            .size(9.dp)
+                    )
+
+                }
+            }
+
+
+        }
+
+    }
+}
+
 
 @Composable
 fun TimelineCard(navController: NavController, event: String, start: String, end: String) {

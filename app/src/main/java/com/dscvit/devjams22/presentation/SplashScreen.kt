@@ -164,7 +164,6 @@ fun SplashScreen(navController: NavController) {
         }
 
         Row(
-
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(10.dp))
                 .background(color = colorResource(id = R.color.blue_button))
@@ -175,20 +174,13 @@ fun SplashScreen(navController: NavController) {
                 .clickable {
                     navController.navigate(route = Screen.Home.route)
                 },
+            horizontalArrangement = Arrangement.Center
 
 
         ) {
-            Spacer(modifier = Modifier.width(60.dp))
-            Text(
-                text = "G",
-                color = Color.White,
-                modifier = Modifier.align(CenterVertically),
-                style = MaterialTheme.typography.body1
 
-            )
-            Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = "Continue with Google",
+                text = "Let's Get Started",
                 color = Color.White,
                 modifier = Modifier.align(CenterVertically),
                 style = MaterialTheme.typography.h1

@@ -28,6 +28,7 @@ fun MainScreen() {
     showBottomBar = when (navBackStackEntry?.destination?.route) {
         "splash_screen" -> false
         "timeline" -> false
+        "announcement" -> false
         else -> true
     }
 
