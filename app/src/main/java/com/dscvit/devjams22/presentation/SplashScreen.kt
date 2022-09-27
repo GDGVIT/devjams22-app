@@ -1,46 +1,62 @@
 package com.dscvit.devjams22.presentation
 
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.ui.theme.GoogleBlue
 import com.dscvit.devjams22.presentation.ui.theme.GoogleGreen
 import com.dscvit.devjams22.presentation.ui.theme.GoogleRed
 import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
+import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashAnimation(navController: NavHostController) {
+    var startAnimation by remember { mutableStateOf(false) }
+    val alphaAnim = animateFloatAsState(
+        targetValue = if (startAnimation) 1f else 0f,
+        animationSpec = tween(
+            durationMillis = 3000
+        )
+    )
+
+    LaunchedEffect(key1 = true) {
+        startAnimation = true
+        delay(4000)
+        navController.popBackStack()
+        navController.navigate(Screen.Home.route)
+    }
+    SplashScreen(alphaAnim.value)
+}
+
+@Composable
+fun SplashScreen(alpha: Float) {
 
     Column(
         modifier = Modifier
             .background(color = Color.White)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .alpha(alpha),
 
 
         ) {
@@ -163,43 +179,12 @@ fun SplashScreen(navController: NavController) {
 
         }
 
-        Row(
-            modifier = Modifier
-                .clip(shape = RoundedCornerShape(10.dp))
-                .background(color = colorResource(id = R.color.blue_button))
-                .fillMaxWidth(.80f)
-                .height(60.dp)
-                .align(CenterHorizontally)
-                .weight(1f, false)
-                .clickable {
-                    navController.navigate(route = Screen.Home.route)
-                },
-            horizontalArrangement = Arrangement.Center
-
-
-        ) {
-
-            Text(
-                text = "Let's Get Started",
-                color = Color.White,
-                modifier = Modifier.align(CenterVertically),
-                style = MaterialTheme.typography.h1
-
-            )
-        }
-
 
     }
 
 
 }
 
-
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewSplash() {
-    SplashScreen(navController = rememberNavController())
-}
 
 
 

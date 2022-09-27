@@ -160,34 +160,7 @@ fun Home(
 
                 )
 
-            Spacer(modifier = Modifier.width(85.dp))
 
-            Row(
-                modifier = Modifier
-                    .padding(top = 10.dp, end = 10.dp)
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .width(40.dp)
-                        .height(40.dp)
-                        .clip(shape = RoundedCornerShape(10.dp))
-                        .background(Color.White)
-
-
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.notification),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(24.dp)
-                    )
-
-                }
-
-
-            }
 
         }
 

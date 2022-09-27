@@ -38,16 +38,17 @@ fun MainScreen() {
                 BottomNavigationBar(
                     items = listOf(
                         BottomNavItem(
-                            name = "Info",
-                            route = Screen.Info.route,
-                            icon = Icons.Default.Info
-                        ),
-                        BottomNavItem(
                             name = "Home",
                             route = Screen.Home.route,
                             icon = Icons.Default.Home
                         ),
-                    ),
+                        BottomNavItem(
+                            name = "Info",
+                            route = Screen.Info.route,
+                            icon = Icons.Default.Info
+                        ),
+
+                        ),
                     navController = navController,
                     onItemClick = {
                         navController.navigate(it.route) {
