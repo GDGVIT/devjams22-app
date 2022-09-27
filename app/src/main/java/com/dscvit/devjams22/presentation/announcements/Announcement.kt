@@ -21,11 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.common.State
 import com.dscvit.devjams22.data.remote.dto.AnnouncementDC
-import com.dscvit.devjams22.data.remote.dto.TimelineDC
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
 import com.yeocak.timelineview.TimelineView
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -58,7 +55,10 @@ fun Announcement(
 
             is State.Success -> {
 
-                Log.d("announce", (postsState as State.Success<List<AnnouncementDC>>).data.toString())
+                Log.d(
+                    "announce",
+                    (postsState as State.Success<List<AnnouncementDC>>).data.toString()
+                )
 
                 LazyColumn {
                     items((postsState as State.Success<List<AnnouncementDC>>).data) {
@@ -82,7 +82,6 @@ fun Announcement(
 }
 
 
-
 @SuppressLint("SimpleDateFormat")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -95,7 +94,7 @@ fun EachEventWithHead(announcementDC: AnnouncementDC) {
             .height(IntrinsicSize.Min)
     ) {
         TimelineView.SingleNode(
-            color =  colorResource(
+            color = colorResource(
                 id = R.color.timelineColor
             ),
             nodeType = TimelineView.NodeType.MIDDLE,
@@ -125,7 +124,7 @@ fun EachEventWithHead(announcementDC: AnnouncementDC) {
                 Text(
                     text = "${announcementDC.desc}",
                     fontWeight = FontWeight.SemiBold,
-                    color =  colorResource(
+                    color = colorResource(
                         id = R.color.timelineColor
                     ),
                     fontSize = 18.sp,

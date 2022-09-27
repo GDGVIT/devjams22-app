@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -23,10 +24,9 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.dscvit.devjams22.R
@@ -44,7 +44,11 @@ import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 @Composable
-fun Home(navController: NavController, viewModel: EventsViewModel = viewModel(), viewModelAnnounce: AnnouncementViewModel = viewModel()) {
+fun Home(
+    navController: NavController,
+    viewModel: EventsViewModel = viewModel(),
+    viewModelAnnounce: AnnouncementViewModel = viewModel()
+) {
     val postsState: State<List<TimelineDC>> by viewModel.postState.collectAsState()
     val announcePostsState: State<List<AnnouncementDC>> by viewModelAnnounce.postState.collectAsState()
     Column(
@@ -189,14 +193,16 @@ fun Home(navController: NavController, viewModel: EventsViewModel = viewModel(),
 
         OpenDiscord()
 
-        Card(
-            backgroundColor = GreyBackground,
-            elevation = 0.dp,
+        Spacer(modifier = Modifier.height(12.dp))
 
-            ) {
+        Box(
+            modifier = Modifier.align(CenterHorizontally)
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.hashtag), contentDescription = null,
-                modifier = Modifier.padding(start = 12.dp)
+                modifier = Modifier
+
+                    .clickable { }
             )
 
             Column(modifier = Modifier.padding(top = 40.dp, start = 45.dp)) {
@@ -289,7 +295,7 @@ fun Home(navController: NavController, viewModel: EventsViewModel = viewModel(),
                     val eventTimeAndDateStart =
                         event.time?.toDate()?.let { eventSDF.format(it) }
 
-                    if(getCurrentTimeAndDate <= eventTimeAndDateStart!!){
+                    if (getCurrentTimeAndDate <= eventTimeAndDateStart!!) {
                         Announcements(navController, event.title.toString(), event.desc.toString())
                     }
 
@@ -304,12 +310,8 @@ fun Home(navController: NavController, viewModel: EventsViewModel = viewModel(),
         }
 
 
-
-
-
     }
 }
-
 
 
 @Composable
@@ -585,19 +587,26 @@ fun OpenDiscord() {
     val intent = Intent(Intent.ACTION_VIEW, openDiscordUrl)
     val context = LocalContext.current
 
-    Card(
-        backgroundColor = GreyBackground,
-        elevation = 0.dp,
-        modifier = Modifier.clickable {
-            startActivity(context, intent, null)
-        }
+    Box(
+        modifier = Modifier
+
+            .background(GreyBackground)
+
+
     ) {
         Image(
             painter = painterResource(id = R.drawable.join_discord), contentDescription = null,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .padding(start = 24.dp, end = 24.dp)
+                .clickable {
+                    ContextCompat.startActivity(context, intent, null)
+
+                }
+
+
         )
 
-        Column(modifier = Modifier.padding(top = 50.dp, start = 45.dp)) {
+        Column(modifier = Modifier.padding(top = 30.dp, start = 45.dp)) {
             Text(
                 text = buildAnnotatedString {
                     withStyle(

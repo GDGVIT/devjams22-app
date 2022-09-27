@@ -33,7 +33,7 @@ fun SetupNavGraph(navController: NavHostController) {
             Timeline()
         }
 
-        composable(route = Screen.Announcement.route){
+        composable(route = Screen.Announcement.route) {
             Announcement()
         }
 

@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dscvit.devjams22.common.State
 import com.dscvit.devjams22.data.remote.dto.AnnouncementDC
-import com.dscvit.devjams22.data.remote.dto.TimelineDC
 import com.dscvit.devjams22.data.repository.AnnouncementRepository
-import com.dscvit.devjams22.data.repository.TimelineRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn

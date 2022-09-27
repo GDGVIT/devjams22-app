@@ -8,7 +8,7 @@ data class AnnouncementDC(
     val time: Timestamp? = null,
     var id: Int? = null,
 
-) {
+    ) {
 
 }
 

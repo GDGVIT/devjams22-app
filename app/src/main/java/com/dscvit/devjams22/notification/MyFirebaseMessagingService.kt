@@ -76,7 +76,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setStyle(NotificationCompat.BigTextStyle().bigText((data[""])))
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.notification)
-        with(NotificationManagerCompat.from(this)){
+        with(NotificationManagerCompat.from(this)) {
             notify(requestCode, builder.build())
         }
 

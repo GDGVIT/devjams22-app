@@ -54,6 +54,7 @@ fun Info() {
 
         Sponsor()
 
+
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
@@ -81,6 +82,8 @@ fun Info() {
 
         OpenDiscord()
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -105,7 +108,7 @@ fun Sponsor() {
             .padding(start = 20.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.digitalocean),
+            painter = painterResource(id = R.drawable.spabinbev),
             contentDescription = null,
             modifier = Modifier
                 .size(80.dp)
@@ -114,7 +117,7 @@ fun Sponsor() {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.hashicorp),
+            painter = painterResource(id = R.drawable.spalgorand),
             contentDescription = null,
             modifier = Modifier
                 .size(102.dp)
@@ -123,7 +126,7 @@ fun Sponsor() {
 
         )
         Image(
-            painter = painterResource(id = R.drawable.deepnote),
+            painter = painterResource(id = R.drawable.spauth),
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
@@ -132,7 +135,7 @@ fun Sponsor() {
 
         )
         Image(
-            painter = painterResource(id = R.drawable.echoar),
+            painter = painterResource(id = R.drawable.spbluelearn),
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
@@ -142,35 +145,118 @@ fun Sponsor() {
         )
     }
 
-    Spacer(modifier = Modifier.height(5.dp))
+
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp)
     ) {
-
         Image(
-            painter = painterResource(id = R.drawable.voiceflow),
+            painter = painterResource(id = R.drawable.spfoss),
             contentDescription = null,
             modifier = Modifier
                 .size(80.dp)
+                .align(CenterVertically)
+
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.spgithub),
+            contentDescription = null,
+            modifier = Modifier
+                .size(102.dp)
+                .align(CenterVertically)
+                .padding(top = 5.dp)
+
+        )
+        Image(
+            painter = painterResource(id = R.drawable.spgodaddy),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
                 .align(CenterVertically)
                 .padding(top = 0.dp)
 
         )
-
         Image(
-            painter = painterResource(id = R.drawable.ren),
+            painter = painterResource(id = R.drawable.sphedera),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp, start = 2.dp)
+
+        )
+    }
+
+
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.spstickermule),
             contentDescription = null,
             modifier = Modifier
                 .size(80.dp)
                 .align(CenterVertically)
-                .padding(start = 10.dp)
+
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.sptinode),
+            contentDescription = null,
+            modifier = Modifier
+                .size(102.dp)
+                .align(CenterVertically)
+                .padding(top = 5.dp)
+
+        )
+        Image(
+            painter = painterResource(id = R.drawable.sptwilio),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 2.dp, start = 7.dp)
 
         )
 
     }
+
+
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.spuptycs),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp, start = 2.dp)
+
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.spquilbot),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp)
+                .align(CenterVertically)
+                .padding(top = 0.dp, start = 7.dp)
+
+        )
+
+    }
+
+
 }
 
 @Composable
@@ -386,3 +472,5 @@ fun Socials() {
     }
 
 }
+
+
