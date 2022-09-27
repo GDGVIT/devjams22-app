@@ -27,7 +27,7 @@ fun DevJams22Theme(content: @Composable () -> Unit) {
     val colors = LightColorPalette
 
     systemUIController.setSystemBarsColor(
-        color = Color.White
+        color = GreyBackground
     )
 
     MaterialTheme(

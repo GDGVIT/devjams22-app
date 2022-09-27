@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -111,8 +112,10 @@ fun Sponsor() {
             painter = painterResource(id = R.drawable.spabinbev),
             contentDescription = null,
             modifier = Modifier
-                .size(80.dp)
-                .align(CenterVertically)
+                .padding(top = 5.dp)
+                .size(80.dp),
+            alignment = Center
+
 
         )
 
@@ -121,8 +124,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(102.dp)
-                .align(CenterVertically)
-                .padding(top = 5.dp)
+                .padding(bottom = 9.dp),
+            alignment = Center
+
 
         )
         Image(
@@ -130,8 +134,8 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp)
+                .padding(top = 0.dp),
+            alignment = Center
 
         )
         Image(
@@ -139,8 +143,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp)
+
+                .padding(top = 0.dp, start = 5.dp),
+            alignment = Center
 
         )
     }
@@ -156,8 +161,9 @@ fun Sponsor() {
             painter = painterResource(id = R.drawable.spfoss),
             contentDescription = null,
             modifier = Modifier
-                .size(80.dp)
-                .align(CenterVertically)
+                .size(80.dp),
+            alignment = Center
+
 
         )
 
@@ -166,8 +172,8 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(102.dp)
-                .align(CenterVertically)
-                .padding(top = 5.dp)
+                .padding(top = 5.dp),
+            alignment = Center
 
         )
         Image(
@@ -175,8 +181,8 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp)
+                .padding(top = 19.dp),
+            alignment = Center
 
         )
         Image(
@@ -184,8 +190,8 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp, start = 2.dp)
+                .padding(top = 19.dp, start = 5.dp),
+            alignment = Center
 
         )
     }
@@ -201,8 +207,9 @@ fun Sponsor() {
             painter = painterResource(id = R.drawable.spstickermule),
             contentDescription = null,
             modifier = Modifier
-                .size(80.dp)
-                .align(CenterVertically)
+                .size(80.dp),
+            alignment = Center
+
 
         )
 
@@ -211,8 +218,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(102.dp)
-                .align(CenterVertically)
-                .padding(top = 5.dp)
+
+                .padding(top = 0.dp),
+            alignment = Center
 
         )
         Image(
@@ -220,8 +228,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 2.dp, start = 7.dp)
+
+                .padding(top = 7.dp, start = 7.dp),
+            alignment = Center
 
         )
 
@@ -239,8 +248,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp, start = 2.dp)
+
+                .padding(top = 0.dp, start = 2.dp),
+            alignment = Center
 
         )
 
@@ -249,8 +259,9 @@ fun Sponsor() {
             contentDescription = null,
             modifier = Modifier
                 .size(90.dp)
-                .align(CenterVertically)
-                .padding(top = 0.dp, start = 7.dp)
+
+                .padding(top = 0.dp, start = 7.dp),
+            alignment = Center
 
         )
 
@@ -280,6 +291,42 @@ fun Faq() {
         stringResource(id = R.string.q_4),
         stringResource(id = R.string.a_4),
         GoogleYellow
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_5),
+        stringResource(id = R.string.a_5),
+        GoogleRed
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_6),
+        stringResource(id = R.string.a_6),
+        GoogleBlue
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_7),
+        stringResource(id = R.string.a_7),
+        GoogleGreen
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_8),
+        stringResource(id = R.string.a_8),
+        GoogleYellow
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_9),
+        stringResource(id = R.string.a_9),
+        GoogleRed
+    )
+
+    ExpandanbleFAQCard(
+        stringResource(id = R.string.q_10),
+        stringResource(id = R.string.a_10),
+        GoogleBlue
     )
 }
 
@@ -434,9 +481,9 @@ fun Socials() {
 
     }
 
-
-    val openMailUrl: Uri = Uri.parse(Constants.mailLink)
-    val mIntent = Intent(Intent.ACTION_VIEW, openMailUrl)
+    val mIntent = Intent(Intent.ACTION_SEND)
+    mIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("dscvit@gmail.com"))
+    mIntent.type = "message/rfc882"
     val mContext = LocalContext.current
 
     Box(

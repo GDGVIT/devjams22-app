@@ -17,12 +17,12 @@ class DataStorePreference : Application() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate() {
         super.onCreate()
-        createNotificaitonChannel()
+        createNotificationChannel()
     }
 
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun createNotificaitonChannel() {
+    private fun createNotificationChannel() {
         val name = "DevJams'22"
         val description = "Notification Description"
         val importance = NotificationManager.IMPORTANCE_HIGH

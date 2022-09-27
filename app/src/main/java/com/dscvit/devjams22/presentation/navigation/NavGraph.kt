@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.dscvit.devjams22.presentation.SplashAnimation
-import com.dscvit.devjams22.presentation.SplashScreen
 import com.dscvit.devjams22.presentation.announcements.Announcement
 import com.dscvit.devjams22.presentation.home.components.Home
 import com.dscvit.devjams22.presentation.info.components.Info

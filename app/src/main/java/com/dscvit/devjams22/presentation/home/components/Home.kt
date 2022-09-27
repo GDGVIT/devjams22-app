@@ -161,8 +161,9 @@ fun Home(
                 )
 
 
-
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         OpenDiscord()
 
@@ -233,7 +234,7 @@ fun Home(
                     val endTimeSDF = SimpleDateFormat("ha")
                     val endTime = event.endTime?.toDate()?.let { endTimeSDF.format(it) }
 
-                    if (getCurrentTimeAndDate < eventTimeAndDateStart!!) {
+                    if (getCurrentTimeAndDate < eventTimeAndDateStart!! && event.endTime != null) {
                         TimelineCard(
                             navController,
                             event.eventName.toString(),
@@ -241,6 +242,15 @@ fun Home(
                             endTime.toString()
                         )
                         break
+                    } else {
+                        TimelineCard(
+                            navController,
+                            event.eventName.toString(),
+                            startTime.toString(),
+                            ""
+                        )
+                        break
+
                     }
 
                 }
@@ -262,7 +272,6 @@ fun Home(
 
             is State.Success -> {
 
-
                 for (event in (announcePostsState as State.Success<List<AnnouncementDC>>).data) {
                     val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
                     val eventTimeAndDateStart =
@@ -270,6 +279,7 @@ fun Home(
 
                     if (getCurrentTimeAndDate <= eventTimeAndDateStart!!) {
                         Announcements(navController, event.title.toString(), event.desc.toString())
+                        break
                     }
 
                 }
@@ -290,14 +300,14 @@ fun Home(
 @Composable
 fun Announcements(navController: NavController, title: String, desc: String) {
 
-
-    Card(
-        backgroundColor = GreyBackground, elevation = 0.dp
+    Box(
+        modifier = Modifier
+            .clip(shape = RoundedCornerShape(8.dp))
+            .fillMaxWidth()
+            .padding(start = 22.dp, end = 22.dp)
+            .height(200.dp)
+            .background(Color.White)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.announcement), contentDescription = null,
-            modifier = Modifier.padding(start = 12.dp)
-        )
 
         Column(modifier = Modifier.padding(top = 20.dp, start = 45.dp)) {
             Row() {
@@ -313,11 +323,8 @@ fun Announcements(navController: NavController, title: String, desc: String) {
 
             Row() {
                 Column(modifier = Modifier.padding(top = 12.dp)) {
-
-
                     Row() {
 
-                        Spacer(modifier = Modifier.width(20.dp))
                         Box(
                             modifier = Modifier
                                 .clip(shape = RoundedCornerShape(10.dp))
@@ -334,7 +341,7 @@ fun Announcements(navController: NavController, title: String, desc: String) {
                                     painter = painterResource(id = R.drawable.circle),
                                     contentDescription = null,
                                     modifier = Modifier
-                                        .padding(top = 1.dp, start = 12.dp)
+                                        .padding(top = 1.dp, start = 0.dp)
                                         .size(35.dp)
                                 )
 
@@ -383,40 +390,53 @@ fun Announcements(navController: NavController, title: String, desc: String) {
                         color = Color.Black,
                         shape = RoundedCornerShape(20.dp)
                     )
+
                     .align(Alignment.End)
             ) {
+
                 Row(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .clickable {
-                            navController.navigate(route = Screen.Announcement.route)
-                        }
                 ) {
-                    Text(
-                        text = "View Announcements",
-                        color = Color.Black,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold,
 
+                    Row(
+                        modifier = Modifier
+
+                            .clickable {
+                                navController.navigate(route = Screen.Announcement.route)
+                            }
+                    ) {
+                        Text(
+                            text = "View Announcements",
+                            color = Color.Black,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+
+                            )
+
+                        Image(
+                            painter = painterResource(id = R.drawable.arrow_black),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(top = 4.dp, start = 5.dp)
+                                .size(9.dp)
                         )
 
 
+                    }
 
-                    Image(
-                        painter = painterResource(id = R.drawable.arrow_black),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(top = 4.dp, start = 5.dp)
-                            .size(9.dp)
-                    )
 
                 }
+
+
             }
 
 
         }
 
     }
+
+
 }
 
 

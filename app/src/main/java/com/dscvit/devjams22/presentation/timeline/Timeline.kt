@@ -21,6 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.common.State
 import com.dscvit.devjams22.data.remote.dto.TimelineDC
+import com.dscvit.devjams22.presentation.components.ProgressBar
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
 import com.yeocak.timelineview.TimelineView
 import java.text.SimpleDateFormat
@@ -52,7 +53,7 @@ fun Timeline(
 
         when (postsState) {
             is State.Loading -> {
-                Text(text = "Loading")
+                ProgressBar(isDisplayed = true)
             }
 
             is State.Success -> {
