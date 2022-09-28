@@ -1,17 +1,22 @@
 package com.dscvit.devjams22.presentation.home.components
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -38,6 +43,7 @@ import com.dscvit.devjams22.presentation.announcements.AnnouncementViewModel
 import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.timeline.EventsViewModel
 import com.dscvit.devjams22.presentation.ui.theme.*
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,251 +55,278 @@ fun Home(
     viewModel: EventsViewModel = viewModel(),
     viewModelAnnounce: AnnouncementViewModel = viewModel()
 ) {
+
+
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
     val postsState: State<List<TimelineDC>> by viewModel.postState.collectAsState()
     val announcePostsState: State<List<AnnouncementDC>> by viewModelAnnounce.postState.collectAsState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(GreyBackground)
-            .verticalScroll(rememberScrollState())
-            .padding(bottom = 70.dp)
-    ) {
-        Row(
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        scaffoldState = scaffoldState,
+        snackbarHost = { scaffoldState.snackbarHostState }) {
+
+
+        Column(
             modifier = Modifier
-                .padding(top = 32.dp, start = 32.dp)
+                .fillMaxSize()
+                .background(GreyBackground)
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = 70.dp)
         ) {
+            Row(
+                modifier = Modifier
+                    .padding(top = 32.dp, start = 32.dp)
+            ) {
+
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleRed,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("D")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleBlue,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("e")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleYellow,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("v")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleGreen,
+                                fontSize = 45.sp,
+                                letterSpacing = (-15).sp
+                            )
+                        ) {
+                            append("J")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleBlue,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("a")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleRed,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("m")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleYellow,
+                                fontSize = 45.sp
+                            )
+                        ) {
+                            append("s")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleGreen,
+                                fontSize = 45.sp,
+                                letterSpacing = 3.sp
+
+                            )
+                        ) {
+                            append("'")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleBlue,
+                                fontSize = 45.sp
+
+                            )
+                        ) {
+                            append("2")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = GoogleBlue,
+                                fontSize = 45.sp,
+                                letterSpacing = (0).sp
+
+                            )
+                        ) {
+                            append("2")
+                        }
+                    },
+                    modifier = Modifier,
+
+                    fontSize = 45.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = (-6).sp,
+
+                    )
+
+
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OpenDiscord()
+            val context = LocalContext.current
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Box(
+                modifier = Modifier.align(CenterHorizontally)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.hashtag), contentDescription = null,
+                    modifier = Modifier
+                        .clickable {
+                            //navController.navigate(route = Screen.Hashtag.route)
+                            mToast(context)
+
+
+                        }
+                )
+
+                Column(modifier = Modifier.padding(top = 40.dp, start = 45.dp)) {
+                    Text(
+                        text = "Hashtag",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 30.sp
+                    )
+
+                    Text(
+                        text = "Trending Posts",
+                        color = Color.White,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 10.sp
+                    )
+
+                }
+
+            }
+
+            Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleRed,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("D")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleBlue,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("e")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleYellow,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("v")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleGreen,
-                            fontSize = 45.sp,
-                            letterSpacing = (-15).sp
-                        )
-                    ) {
-                        append("J")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleBlue,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("a")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleRed,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("m")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleYellow,
-                            fontSize = 45.sp
-                        )
-                    ) {
-                        append("s")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleGreen,
-                            fontSize = 45.sp,
-                            letterSpacing = 3.sp
-
-                        )
-                    ) {
-                        append("'")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleBlue,
-                            fontSize = 45.sp
-
-                        )
-                    ) {
-                        append("2")
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = GoogleBlue,
-                            fontSize = 45.sp,
-                            letterSpacing = (0).sp
-
-                        )
-                    ) {
-                        append("2")
-                    }
-                },
-                modifier = Modifier,
-
-                fontSize = 45.sp,
+                text = "Timeline",
+                color = Color.Black,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = (-6).sp,
-
-                )
-
-
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OpenDiscord()
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Box(
-            modifier = Modifier.align(CenterHorizontally)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.hashtag), contentDescription = null,
-                modifier = Modifier
-
-                    .clickable { }
+                fontSize = 30.sp,
+                modifier = Modifier.padding(start = 20.dp)
             )
-
-            Column(modifier = Modifier.padding(top = 40.dp, start = 45.dp)) {
-                Text(
-                    text = "Hashtag",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp
-                )
-
-                Text(
-                    text = "Trending Posts",
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 10.sp
-                )
-
-            }
-
-        }
-
-        Spacer(modifier = Modifier.height(30.dp))
-
-        Text(
-            text = "Timeline",
-            color = Color.Black,
-            fontWeight = FontWeight.Bold,
-            fontSize = 30.sp,
-            modifier = Modifier.padding(start = 20.dp)
-        )
-        val timeNow = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
-        val getCurrentTimeAndDate = timeNow.format(Date())
+            val timeNow = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+            val getCurrentTimeAndDate = timeNow.format(Date())
 
 
-        when (postsState) {
-            is State.Loading -> {
-                TimelineCard(
-                    navController,
-                    "Loading",
-                    "",
-                    ""
-                )
-            }
+            when (postsState) {
+                is State.Loading -> {
+                    TimelineCard(
+                        navController,
+                        "Loading",
+                        "",
+                        ""
+                    )
+                }
 
-            is State.Success -> {
+                is State.Success -> {
 
-                for (event in (postsState as State.Success<List<TimelineDC>>).data) {
-                    val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
-                    val eventTimeAndDateStart =
-                        event.startTime?.toDate()?.let { eventSDF.format(it) }
+                    for (event in (postsState as State.Success<List<TimelineDC>>).data) {
+                        val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+                        val eventTimeAndDateStart =
+                            event.startTime?.toDate()?.let { eventSDF.format(it) }
 
-                    val startTimeSDF = SimpleDateFormat("ha")
-                    val startTime = event.startTime?.toDate()?.let { startTimeSDF.format(it) }
+                        val startTimeSDF = SimpleDateFormat("ha")
+                        val startTime = event.startTime?.toDate()?.let { startTimeSDF.format(it) }
 
-                    val endTimeSDF = SimpleDateFormat("ha")
-                    val endTime = event.endTime?.toDate()?.let { endTimeSDF.format(it) }
+                        val endTimeSDF = SimpleDateFormat("ha")
+                        val endTime = event.endTime?.toDate()?.let { endTimeSDF.format(it) }
 
-                    if (getCurrentTimeAndDate < eventTimeAndDateStart!! && event.endTime != null) {
-                        TimelineCard(
-                            navController,
-                            event.eventName.toString(),
-                            startTime.toString(),
-                            endTime.toString()
-                        )
-                        break
-                    } else {
-                        TimelineCard(
-                            navController,
-                            event.eventName.toString(),
-                            startTime.toString(),
-                            ""
-                        )
-                        break
+                        if (getCurrentTimeAndDate < eventTimeAndDateStart!! && event.endTime != null) {
+                            TimelineCard(
+                                navController,
+                                event.eventName.toString(),
+                                startTime.toString(),
+                                endTime.toString()
+                            )
+                            break
+                        } else {
+                            TimelineCard(
+                                navController,
+                                event.eventName.toString(),
+                                startTime.toString(),
+                                ""
+                            )
+                            break
+
+                        }
 
                     }
 
                 }
 
+                is State.Failed -> {
+                    Text(text = (postsState as State.Failed<List<TimelineDC>>).message)
+                    Log.d("Failed", (postsState as State.Failed<List<TimelineDC>>).message)
+                }
             }
 
-            is State.Failed -> {
-                Text(text = (postsState as State.Failed<List<TimelineDC>>).message)
-                Log.d("Failed", (postsState as State.Failed<List<TimelineDC>>).message)
-            }
-        }
+            Spacer(modifier = Modifier.height(30.dp))
 
-        Spacer(modifier = Modifier.height(30.dp))
+            when (announcePostsState) {
+                is State.Loading -> {
+                    Announcements(navController, "Loading", "")
+                }
 
-        when (announcePostsState) {
-            is State.Loading -> {
-                Announcements(navController, "Loading", "")
-            }
+                is State.Success -> {
 
-            is State.Success -> {
+                    for (event in (announcePostsState as State.Success<List<AnnouncementDC>>).data) {
+                        val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
+                        val eventTimeAndDateStart =
+                            event.time?.toDate()?.let { eventSDF.format(it) }
 
-                for (event in (announcePostsState as State.Success<List<AnnouncementDC>>).data) {
-                    val eventSDF = SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z")
-                    val eventTimeAndDateStart =
-                        event.time?.toDate()?.let { eventSDF.format(it) }
+                        if (getCurrentTimeAndDate <= eventTimeAndDateStart!!) {
+                            Announcements(
+                                navController,
+                                event.title.toString(),
+                                event.desc.toString()
+                            )
+                            break
+                        }
 
-                    if (getCurrentTimeAndDate <= eventTimeAndDateStart!!) {
-                        Announcements(navController, event.title.toString(), event.desc.toString())
-                        break
                     }
 
                 }
 
+                is State.Failed -> {
+                    Text(text = (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
+                    Log.d(
+                        "Failed",
+                        (announcePostsState as State.Failed<List<AnnouncementDC>>).message
+                    )
+                }
             }
 
-            is State.Failed -> {
-                Text(text = (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
-                Log.d("Failed", (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
-            }
+
         }
-
 
     }
+
+
 }
 
 
@@ -668,6 +701,11 @@ fun OpenDiscord() {
 
     }
 }
+
+private fun mToast(context: Context){
+    Toast.makeText(context, "Coming Soon!", Toast.LENGTH_LONG).show()
+}
+
 
 
 

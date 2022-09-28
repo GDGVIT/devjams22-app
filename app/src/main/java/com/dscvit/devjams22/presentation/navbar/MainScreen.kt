@@ -29,6 +29,7 @@ fun MainScreen() {
         "splash_screen" -> false
         "timeline" -> false
         "announcement" -> false
+        "hashtag" -> false
         else -> true
     }
 
