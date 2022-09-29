@@ -1,5 +1,6 @@
 package com.dscvit.devjams22.presentation.hashtag
 
+import android.content.pm.ActivityInfo
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,9 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.dscvit.devjams22.presentation.ui.theme.GoogleBlue
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
+import com.dscvit.devjams22.presentation.ui.theme.LockScreenOrientation
 
 @Composable
 fun Hashtag() {
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Column(
         modifier = Modifier
             .fillMaxSize()

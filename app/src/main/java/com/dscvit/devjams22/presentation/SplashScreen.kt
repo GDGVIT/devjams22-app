@@ -1,6 +1,7 @@
 package com.dscvit.devjams22.presentation
 
 
+import android.content.pm.ActivityInfo
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -23,15 +24,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.dscvit.devjams22.R
 import com.dscvit.devjams22.presentation.navigation.Screen
-import com.dscvit.devjams22.presentation.ui.theme.GoogleBlue
-import com.dscvit.devjams22.presentation.ui.theme.GoogleGreen
-import com.dscvit.devjams22.presentation.ui.theme.GoogleRed
-import com.dscvit.devjams22.presentation.ui.theme.GoogleYellow
+import com.dscvit.devjams22.presentation.ui.theme.*
 import kotlinx.coroutines.delay
 
 
 @Composable
 fun SplashAnimation(navController: NavHostController) {
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     var startAnimation by remember { mutableStateOf(false) }
     val alphaAnim = animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,

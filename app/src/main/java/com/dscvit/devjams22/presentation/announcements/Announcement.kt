@@ -1,6 +1,7 @@
 package com.dscvit.devjams22.presentation.announcements
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -28,6 +29,7 @@ import com.dscvit.devjams22.common.State
 import com.dscvit.devjams22.data.remote.dto.AnnouncementDC
 import com.dscvit.devjams22.presentation.components.ProgressBar
 import com.dscvit.devjams22.presentation.ui.theme.GreyBackground
+import com.dscvit.devjams22.presentation.ui.theme.LockScreenOrientation
 import com.yeocak.timelineview.TimelineView
 import java.text.SimpleDateFormat
 
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat
 fun Announcement(
     viewModel: AnnouncementViewModel = viewModel()
 ) {
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     val postsState: State<List<AnnouncementDC>> by viewModel.postState.collectAsState()
     Column(
         modifier = Modifier

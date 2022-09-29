@@ -1,6 +1,7 @@
 package com.dscvit.devjams22.presentation.info.components
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
@@ -36,6 +37,7 @@ import com.dscvit.devjams22.presentation.ui.theme.*
 @Preview(showSystemUi = true)
 @Composable
 fun Info() {
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -3,6 +3,7 @@ package com.dscvit.devjams22.presentation.home.components
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -16,7 +17,6 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -43,7 +43,6 @@ import com.dscvit.devjams22.presentation.announcements.AnnouncementViewModel
 import com.dscvit.devjams22.presentation.navigation.Screen
 import com.dscvit.devjams22.presentation.timeline.EventsViewModel
 import com.dscvit.devjams22.presentation.ui.theme.*
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -56,9 +55,10 @@ fun Home(
     viewModelAnnounce: AnnouncementViewModel = viewModel()
 ) {
 
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
 
     val scaffoldState = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
     val postsState: State<List<TimelineDC>> by viewModel.postState.collectAsState()
     val announcePostsState: State<List<AnnouncementDC>> by viewModelAnnounce.postState.collectAsState()
 
@@ -243,6 +243,7 @@ fun Home(
                     )
                 }
 
+                //timeline
                 is State.Success -> {
 
                     for (event in (postsState as State.Success<List<TimelineDC>>).data) {
@@ -264,7 +265,7 @@ fun Home(
                                 endTime.toString()
                             )
                             break
-                        } else {
+                        } else if ((getCurrentTimeAndDate < eventTimeAndDateStart && event.endTime == null)) {
                             TimelineCard(
                                 navController,
                                 event.eventName.toString(),
@@ -273,6 +274,29 @@ fun Home(
                             )
                             break
 
+                        } else {
+                            val lastItem =
+                                getLast((postsState as State.Success<List<TimelineDC>>).data)
+
+                            if (lastItem?.endTime == null) {
+                                TimelineCard(
+                                    navController,
+                                    event.eventName.toString(),
+                                    startTime.toString(),
+                                    ""
+                                )
+                                break
+                            } else {
+                                TimelineCard(
+                                    navController,
+                                    event.eventName.toString(),
+                                    startTime.toString(),
+                                    endTime.toString()
+                                )
+                                break
+                            }
+
+
                         }
 
                     }
@@ -280,13 +304,21 @@ fun Home(
                 }
 
                 is State.Failed -> {
-                    Text(text = (postsState as State.Failed<List<TimelineDC>>).message)
+
+                    TimelineCard(
+                        navController,
+                        "Check your network connection",
+                        "",
+                        ""
+                    )
+
                     Log.d("Failed", (postsState as State.Failed<List<TimelineDC>>).message)
                 }
             }
 
             Spacer(modifier = Modifier.height(30.dp))
 
+            //announcements
             when (announcePostsState) {
                 is State.Loading -> {
                     Announcements(navController, "Loading", "")
@@ -306,6 +338,17 @@ fun Home(
                                 event.desc.toString()
                             )
                             break
+                        } else {
+                            val lastItem =
+                                getLast((announcePostsState as State.Success<List<AnnouncementDC>>).data)
+
+                            Announcements(
+                                navController,
+                                lastItem?.title.toString(), lastItem?.desc.toString()
+                            )
+                            break
+
+
                         }
 
                     }
@@ -313,7 +356,11 @@ fun Home(
                 }
 
                 is State.Failed -> {
-                    Text(text = (announcePostsState as State.Failed<List<AnnouncementDC>>).message)
+                    Announcements(
+                        navController = navController,
+                        title = "Check your network connection",
+                        desc = ""
+                    )
                     Log.d(
                         "Failed",
                         (announcePostsState as State.Failed<List<AnnouncementDC>>).message
@@ -702,8 +749,16 @@ fun OpenDiscord() {
     }
 }
 
-private fun mToast(context: Context){
+private fun mToast(context: Context) {
     Toast.makeText(context, "Coming Soon!", Toast.LENGTH_LONG).show()
+}
+
+fun <T> getLast(list: List<T>): T? {
+    var lastItem: T? = null
+    for (e in list) {
+        lastItem = e
+    }
+    return lastItem
 }
 
 
