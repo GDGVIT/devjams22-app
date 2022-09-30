@@ -70,9 +70,12 @@ fun Info() {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Box(modifier = Modifier
-            .clip(shape = Shapes.small).padding(start = 20.dp, end = 20.dp)
-            .background(Color.White)){
+        Box(
+            modifier = Modifier
+                .clip(shape = Shapes.small)
+                .padding(start = 20.dp, end = 20.dp)
+                .background(Color.White)
+        ) {
             Faq()
         }
 
@@ -283,66 +286,65 @@ fun Sponsor() {
 @Composable
 fun Faq() {
 
-        Column() {
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_1),
-                stringResource(id = R.string.a_1),
-                GoogleRed
-            )
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_2),
-                stringResource(id = R.string.a_2),
-                GoogleBlue
-            )
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_3),
-                stringResource(id = R.string.a_3),
-                GoogleGreen
-            )
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_4),
-                stringResource(id = R.string.a_4),
-                GoogleYellow
-            )
+    Column() {
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_1),
+            stringResource(id = R.string.a_1),
+            GoogleRed
+        )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_2),
+            stringResource(id = R.string.a_2),
+            GoogleBlue
+        )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_3),
+            stringResource(id = R.string.a_3),
+            GoogleGreen
+        )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_4),
+            stringResource(id = R.string.a_4),
+            GoogleYellow
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_5),
-                stringResource(id = R.string.a_5),
-                GoogleRed
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_5),
+            stringResource(id = R.string.a_5),
+            GoogleRed
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_6),
-                stringResource(id = R.string.a_6),
-                GoogleBlue
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_6),
+            stringResource(id = R.string.a_6),
+            GoogleBlue
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_7),
-                stringResource(id = R.string.a_7),
-                GoogleGreen
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_7),
+            stringResource(id = R.string.a_7),
+            GoogleGreen
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_8),
-                stringResource(id = R.string.a_8),
-                GoogleYellow
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_8),
+            stringResource(id = R.string.a_8),
+            GoogleYellow
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_9),
-                stringResource(id = R.string.a_9),
-                GoogleRed
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_9),
+            stringResource(id = R.string.a_9),
+            GoogleRed
+        )
 
-            ExpandanbleFAQCard(
-                stringResource(id = R.string.q_10),
-                stringResource(id = R.string.a_10),
-                GoogleBlue
-            )
+        ExpandanbleFAQCard(
+            stringResource(id = R.string.q_10),
+            stringResource(id = R.string.a_10),
+            GoogleBlue
+        )
 
-        }
-
+    }
 
 
 }
@@ -357,7 +359,7 @@ fun ExpandanbleFAQCard(title: String, description: String, color: Color) {
     Card(
         onClick = { expandedState = !expandedState }, modifier = Modifier
             .fillMaxWidth()
-            .padding( bottom = 10.dp)
+            .padding(bottom = 10.dp)
             .animateContentSize(
                 animationSpec = tween(
                     400,

@@ -3,12 +3,14 @@ package com.dscvit.devjams22.presentation.navigation
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.dscvit.devjams22.presentation.SplashAnimation
 import com.dscvit.devjams22.presentation.announcements.Announcement
 import com.dscvit.devjams22.presentation.hashtag.Hashtag
+import com.dscvit.devjams22.presentation.hashtag.HashtagViewModel
 import com.dscvit.devjams22.presentation.home.components.Home
 import com.dscvit.devjams22.presentation.info.components.Info
 import com.dscvit.devjams22.presentation.timeline.Timeline
@@ -18,6 +20,8 @@ import com.dscvit.devjams22.presentation.timeline.Timeline
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
+
+
         composable(route = Screen.Splash.route) {
             SplashAnimation(navController = navController)
         }
@@ -39,7 +43,8 @@ fun SetupNavGraph(navController: NavHostController) {
         }
 
         composable(route = Screen.Hashtag.route) {
-            Hashtag()
+            val viewModel = hiltViewModel<HashtagViewModel>()
+            Hashtag(viewModel)
         }
 
     }

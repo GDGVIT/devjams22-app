@@ -194,8 +194,8 @@ fun Home(
                     painter = painterResource(id = R.drawable.hashtag), contentDescription = null,
                     modifier = Modifier
                         .clickable {
-                            //navController.navigate(route = Screen.Hashtag.route)
-                            mToast(context)
+                            navController.navigate(route = Screen.Hashtag.route)
+                            //mToast(context)
 
 
                         }
