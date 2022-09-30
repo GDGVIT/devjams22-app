@@ -96,7 +96,7 @@ fun Cards(hashtagDC: Data, pos: Int) {
     Box(
         modifier = Modifier
             .height(420.dp)
-            .width(350.dp)
+            .width(380.dp)
             .clip(shape = RoundedCornerShape(10.dp))
             .background(color = getCardColor(pos))
 
@@ -126,12 +126,13 @@ fun Cards(hashtagDC: Data, pos: Int) {
                     .align(CenterHorizontally)
             ) {
                 Image(
-                    //painter = painterResource(id = R.drawable.timeline1),
+                    
                     painter = imagePainter,
                     contentDescription = null,
                     modifier = Modifier
-                        //.size(300.dp)
-                        .padding(bottom = 8.dp, start = 5.dp, end = 5.dp),
+
+                        .padding(bottom = 5.dp, start = 5.dp, end = 5.dp)
+                        .clip(RoundedCornerShape(5.dp)),
                     contentScale = ContentScale.Crop
                 )
             }
