@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">DevJams\'22</string>
+
+    <string name="q_1">Q.What is DevJams?</string>
+    <string name="a_1">DevJams is an annual 36-hour long hackathon, that aims to bring together great developers and designers under one roof and pitting them against each other in a healthy competition. Under focused mentorship from a dedicated and experienced technical team, and an equally challenging and innovative panel of themes, participants can test their skills and use them to build projects to solve real-world problems.</string>
+
+    <string name="q_2">Q.How do I submit what I have made for the hackathon?</string>
+    <string name="a_2">You have to develop the application on your local system, add your code to a GitHub repository and submit its link. Also, you have to update the README of your repository with all the details about your application along with the instructions to run.</string>
+
+    <string name="q_3">Q.Do we need to have the entire idea fully working?</string>
+    <string name="a_3">The entire idea need not be fully implemented. However, the submission should be functional so that it can be reviewed by the judges.</string>
+
+    <string name="q_4">Q.Do I need to give a demo of the product that I have built?</string>
+    <string name="a_4">If you want, you can submit a small presentation or a video that demonstrates your submission. However, it\'s not mandatory, and only good to have. In case you are one of the winners, you might be invited to demonstrate your application, details of which will be shared with sufficient advance notice.</string>
+
+    <string name="q_5">Q.If it is a team submission , does that mean all team members will have access to work at the same time?</string>
+    <string name="a_5">Yes, all team members can log in from their account and submit their project on the DevJams portal.</string>
+
+    <string name="q_6">Q.Will the hackathon be online or offline?</string>
+    <string name="a_6">The hackathon will be completely offline.</string>
+
+    <string name="q_7">Q.Will your environment support any language or will you provide any IDE and DB for us to work on ideas?</string>
+    <string name="a_7">You have to develop the application on your local system, add your code to a GitHub repository and submit its link. Update the README with all the details about your application and the instructions to run the code.</string>
+
+    <string name="q_8">Q.Is it necessary for participants to belong to the same university?</string>
+    <string name="a_8">No, there are no restrictions regarding universities. Your team can have members from different universities across the globe as long as you can commute to VIT, Vellore India since it is an offline hack!</string>
+
+    <string name="q_9">Q.Who will own the IP(Intellectual Property) Rights to the projects that I built?</string>
+    <string name="a_9">The developer(s) will have all the rights to own the IP of the product. However, all the code needs to be in the public domain (open source) so that it can be evaluated by the judges.</string>
+
+    <string name="q_10">Q.I still have some doubts regarding the event. How can I get them resolved?</string>
+    <string name="a_10">Feel free to ping us on Twitter, on Instagram or you can mail us at dscvitvellore@gmail.com at any time of the day. We will try to respond as soon as possible!</string>
+
+
+
+
+    <string name="default_notification_channel_id">Global</string>
+</resources>
